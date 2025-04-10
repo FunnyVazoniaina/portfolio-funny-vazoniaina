@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProjectCard from './components/ProjectCard';
 import SkillCard from './components/SkillCard';
-import { FaDownload, FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaDownload, FaEnvelope, FaGithub, FaLinkedin, FaFacebook } from 'react-icons/fa';
 
 const lightTheme = {
   background: '#f8fafc',
@@ -75,6 +75,13 @@ const Description = styled.p`
   margin: 1.5rem auto;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+`;
+
 const Button = styled(motion.a)`
   display: inline-flex;
   align-items: center;
@@ -88,6 +95,25 @@ const Button = styled(motion.a)`
   transition: all 0.3s ease;
   &:hover {
     background: ${({ theme }) => theme.hover};
+    transform: translateY(-2px);
+  }
+`;
+
+const OutlineButton = styled(motion.a)`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: ${({ theme }) => theme.accent};
+  border: 2px solid ${({ theme }) => theme.accent};
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  &:hover {
+    border-color: ${({ theme }) => theme.hover};
+    color: ${({ theme }) => theme.hover};
     transform: translateY(-2px);
   }
 `;
@@ -148,6 +174,14 @@ const IconLink = styled(motion.a)`
   }
 `;
 
+const QRCode = styled.img`
+  width: 150px;
+  height: 150px;
+  margin-top: 2rem;
+  border: 2px solid ${({ theme }) => theme.accent};
+  border-radius: 8px;
+`;
+
 const App = () => {
   const { t, i18n } = useTranslation();
   const [theme, setTheme] = useState('dark');
@@ -192,14 +226,14 @@ const App = () => {
             <Title>{t('homeTitle')}</Title>
             <Subtitle>{t('subtitle')}</Subtitle>
             <Description>{t('description')}</Description>
-            <div>
+            <ButtonContainer>
               <Button href="#contact" whileHover={{ scale: 1.05 }}>
                 <FaEnvelope /> {t('contactMe')}
               </Button>
-              <Button href="/cv.pdf" download whileHover={{ scale: 1.05 }}>
+              <OutlineButton href="/cv.pdf" download whileHover={{ scale: 1.05 }}>
                 <FaDownload /> {t('downloadCV')}
-              </Button>
-            </div>
+              </OutlineButton>
+            </ButtonContainer>
           </motion.div>
         </HomeSection>
         <AboutSection id="about">
@@ -246,7 +280,11 @@ const App = () => {
             <IconLink href="https://www.linkedin.com/in/funny-vazoniaina-915429281/" target="_blank" whileHover={{ scale: 1.1 }}>
               <FaLinkedin />
             </IconLink>
+            <IconLink href="https://web.facebook.com/vazuniaina.funy/" target="_blank" whileHover={{ scale: 1.1 }}>
+              <FaFacebook />
+            </IconLink>
           </ContactIcons>
+          <QRCode src="/qrcode.png" alt="QR Code to my portfolio" />
         </ContactSection>
         <Footer isDark={isDark} />
       </Container>

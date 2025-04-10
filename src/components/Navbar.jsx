@@ -30,12 +30,12 @@ const NavContainer = styled.div`
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.25rem; /* Légèrement augmenté pour équilibrer avec la photo plus grande */
+  gap: 1.25rem;
 `;
 
 const ProfileImage = styled.img`
-  width: 60px; /* Agrandi de 40px à 60px */
-  height: 60px; /* Agrandi de 40px à 60px */
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid ${({ isDark }) => (isDark ? '#facc15' : '#10b981')};
@@ -56,7 +56,7 @@ const NavMenu = styled.div`
   gap: 2.5rem;
 
   @media (max-width: 768px) {
-    display: none;
+    display: none; /* Masque le menu classique sur mobile */
   }
 `;
 
@@ -141,7 +141,7 @@ const LanguageToggle = styled.button.withConfig({
 `;
 
 const Hamburger = styled.button`
-  display: none;
+  display: none; /* Par défaut caché sur desktop */
   background: none;
   border: none;
   color: ${({ isDark }) => (isDark ? '#e2e8f0' : '#0f172a')};
@@ -149,7 +149,7 @@ const Hamburger = styled.button`
   cursor: pointer;
 
   @media (max-width: 768px) {
-    display: block;
+    display: block; /* Affiche le hamburger sur mobile */
   }
 `;
 
@@ -166,10 +166,6 @@ const MobileMenu = styled(motion.div)`
   gap: 2rem;
   z-index: 999;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
-
-  @media (min-width: 769px) {
-    display: none;
-  }
 `;
 
 const MobileNavItem = styled.a.withConfig({
