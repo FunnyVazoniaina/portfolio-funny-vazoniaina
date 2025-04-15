@@ -496,10 +496,16 @@ const SkillsSection = styled(Section)`
   background: ${({ theme }) => theme.backgroundAlt};
   position: relative;
   overflow: hidden;
+  padding: 6rem 1rem; // Réduire le padding horizontal
+  
+  @media (max-width: 768px) {
+    padding: 4rem 1rem;
+  }
 `;
 
 const SkillsCategory = styled(motion.div)`
   margin-bottom: 4rem;
+  width: 100%;
   
   &:last-child {
     margin-bottom: 0;
@@ -534,11 +540,12 @@ const CategoryContainer = styled.div`
 
 const SkillsGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  width: 100%;
   
   @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: 1fr;
   }
 `;
 
@@ -1276,6 +1283,7 @@ const App = () => {
         </AnimatePresence>
       </Container>
     </ThemeProvider>
+    
   );
 };
 

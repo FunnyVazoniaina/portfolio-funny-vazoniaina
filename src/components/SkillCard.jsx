@@ -2,23 +2,25 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 const Card = styled(motion.div)`
-  background: ${({ theme, isDark }) => 
-    isDark ? 'rgba(22, 28, 36, 0.8)' : 'rgba(255, 255, 255, 0.8)'};
+  background: transparent;
   padding: 1.8rem;
   border-radius: 16px;
   box-shadow: ${({ theme, isDark }) => 
-    isDark ? '0 8px 25px rgba(0, 0, 0, 0.2)' : '0 8px 25px rgba(0, 0, 0, 0.06)'};
+    isDark ? '0 8px 25px rgba(0, 0, 0, 0.1)' : '0 8px 25px rgba(0, 0, 0, 0.03)'};
   transition: all 0.4s ease;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(5px);
   border: 1px solid ${({ theme, isDark }) => 
     isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.03)'};
   position: relative;
   overflow: hidden;
+  width: 100%;
   
   &:hover {
     transform: translateY(-8px) scale(1.02);
     box-shadow: ${({ theme, isDark }) => 
-      isDark ? '0 15px 35px rgba(0, 0, 0, 0.3)' : '0 15px 35px rgba(0, 0, 0, 0.1)'};
+      isDark ? '0 15px 35px rgba(0, 0, 0, 0.2)' : '0 15px 35px rgba(0, 0, 0, 0.08)'};
+    background: ${({ theme, isDark }) => 
+      isDark ? 'rgba(22, 28, 36, 0.4)' : 'rgba(255, 255, 255, 0.4)'};
   }
   
   &::before {
@@ -26,7 +28,7 @@ const Card = styled(motion.div)`
     position: absolute;
     width: 100px;
     height: 100px;
-    background: ${({ theme }) => theme.accent}20;
+    background: ${({ theme }) => theme.accent}10;
     border-radius: 50%;
     top: -50px;
     right: -50px;
@@ -96,7 +98,7 @@ const ProgressValue = styled.span`
 
 const ProgressBar = styled.div`
   background: ${({ theme, isDark }) => 
-    isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'};
+    isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.08)'};
   height: 8px;
   border-radius: 9999px;
   overflow: hidden;
