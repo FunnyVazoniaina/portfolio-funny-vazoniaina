@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProjectCard from './components/ProjectCard';
 import SkillCard from './components/SkillCard';
+import { Analytics } from "@vercel/analytics/react"
 import { 
   FaDownload, 
   FaEnvelope, 
