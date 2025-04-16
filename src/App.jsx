@@ -133,15 +133,16 @@ const Container = styled.div`
 `;
 
 const Section = styled.section`
-  padding: 6rem 2rem;
-  max-width: 1400px;
+  padding: 6rem 1rem; // Réduire le padding horizontal global
+  max-width: 1600px; // Augmenter la largeur maximale (était 1400px)
   margin: 0 auto;
   position: relative;
   
   @media (max-width: 768px) {
-    padding: 4rem 1.5rem;
+    padding: 4rem 0.75rem;
   }
 `;
+
 
 const SectionTitle = styled(motion.h2)`
   font-size: 2.75rem;
@@ -496,15 +497,17 @@ const SkillsSection = styled(Section)`
   background: ${({ theme }) => theme.backgroundAlt};
   position: relative;
   overflow: hidden;
-  padding: 6rem 1rem; // Réduire le padding horizontal
+  padding: 6rem 0.5rem; // Réduire davantage le padding horizontal
+  max-width: 100%; // Utiliser toute la largeur disponible
   
   @media (max-width: 768px) {
-    padding: 4rem 1rem;
+    padding: 4rem 0.5rem;
   }
 `;
 
+
 const SkillsCategory = styled(motion.div)`
-  margin-bottom: 4rem;
+  margin-bottom: 3rem; // Réduire la marge (était 4rem)
   width: 100%;
   
   &:last-child {
@@ -535,19 +538,20 @@ const CategoryTitle = styled.h3`
 
 const CategoryContainer = styled.div`
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem; // Réduire la marge (était 2rem)
 `;
 
 const SkillsGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  gap: 1.5rem; // Réduire l'espacement (était 2rem)
   width: 100%;
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
 `;
+
 
 // Contact Section
 const ContactSection = styled(Section)`
@@ -585,6 +589,7 @@ const ContactContent = styled.div`
   text-align: center;
   position: relative;
   z-index: 1;
+  padding: 0 1rem; /* Ajout de padding horizontal */
 `;
 
 const ContactDescription = styled(motion.p)`
@@ -592,6 +597,16 @@ const ContactDescription = styled(motion.p)`
   color: ${({ theme }) => theme.textSecondary};
   margin-bottom: 3rem;
   line-height: 1.8;
+  
+  @media (max-width: 768px) {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
 `;
 
 const ContactIcons = styled(motion.div)`
@@ -600,6 +615,15 @@ const ContactIcons = styled(motion.div)`
   gap: 1.8rem;
   margin: 3rem auto;
   max-width: 500px;
+  
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 1.2rem;
+  }
 `;
 
 const IconLink = styled(motion.a)`
@@ -617,6 +641,18 @@ const IconLink = styled(motion.a)`
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  
+  @media (max-width: 768px) {
+    width: 60px;
+    height: 60px;
+    font-size: 1.3rem;
+  }
+  
+  @media (max-width: 480px) {
+    width: 50px;
+    height: 50px;
+    font-size: 1.1rem;
+  }
   
   &::before {
     content: '';
@@ -668,10 +704,24 @@ const ContactTooltip = styled.span`
   white-space: nowrap;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   
+  @media (max-width: 768px) {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    bottom: -35px;
+  }
+  
+  @media (max-width: 480px) {
+    display: none; /* Masquer les tooltips sur très petits écrans */
+  }
+  
   ${IconLink}:hover & {
     opacity: 1;
     visibility: visible;
     bottom: -45px;
+    
+    @media (max-width: 768px) {
+      bottom: -38px;
+    }
   }
   
   &::before {
@@ -685,6 +735,7 @@ const ContactTooltip = styled.span`
     border-bottom: 6px solid ${({ theme }) => theme.accent};
   }
 `;
+
 
 const ContactDivider = styled(motion.div)`
   width: 100px;
@@ -707,6 +758,14 @@ const CTAText = styled.p`
   font-weight: 600;
   color: ${({ theme }) => theme.text};
   margin-bottom: 1rem;
+  
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const CTAButton = styled(motion.a)`
@@ -722,6 +781,16 @@ const CTAButton = styled(motion.a)`
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 10px 20px ${({ theme }) => theme.accent}40;
+  
+  @media (max-width: 768px) {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.9rem;
+  }
   
   &:hover {
     background: ${({ theme }) => theme.hover};
