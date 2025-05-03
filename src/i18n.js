@@ -68,7 +68,7 @@ const resources = {
       sendMessage: "Send Message",
       
       // Footer
-      scanQRCode: "Scan this QR code to save my contact information",
+      scanQRCode: "Scan this QR code to share my portfolio!",
       madeWith: "Made with",
       and: "and",
     },
@@ -139,7 +139,7 @@ const resources = {
       sendMessage: "Envoyer un message",
       
       // Footer
-      scanQRCode: "Scannez ce QR code pour enregistrer mes coordonnées",
+      scanQRCode: "Scannez ce QR code pour partager mon portfolio!",
       madeWith: "Fait avec",
       and: "et",
     },

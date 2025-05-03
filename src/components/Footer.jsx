@@ -139,7 +139,7 @@ const Footer = ({ isDark }) => {
           variants={fadeInUp}
         >
           <QRCodeImage 
-            src="/qrcode.png" 
+            src="/qr-code.png" 
             alt="Scan for contact info"
             whileHover={{ rotate: 5 }}
           />
