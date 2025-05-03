@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Card = styled(motion.div)`
   background: transparent;
-  padding: 1.8rem;
+  padding: 1.5rem; // Réduire le padding (était 1.8rem)
   border-radius: 16px;
   box-shadow: ${({ theme, isDark }) => 
     isDark ? '0 8px 25px rgba(0, 0, 0, 0.1)' : '0 8px 25px rgba(0, 0, 0, 0.03)'};
