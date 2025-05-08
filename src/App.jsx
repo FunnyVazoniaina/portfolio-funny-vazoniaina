@@ -44,7 +44,7 @@ import {
 } from 'react-icons/si';
 import { DiJava } from 'react-icons/di';
 
-// Modern color palette
+// Modern color palette combining blue and purple tones
 const lightTheme = {
   background: '#f8fafc',
   backgroundAlt: '#f1f5f9',
@@ -52,12 +52,12 @@ const lightTheme = {
   textSecondary: '#334155',
   cardBackground: '#ffffff',
   shadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
-  accent: '#3b82f6',
-  hover: '#2563eb',
-  secondary: '#f97316',
+  accent: '#4f46e5', // Indigo - entre bleu et violet
+  hover: '#3730a3', // Indigo plus foncé
+  secondary: '#2563eb', // Bleu royal - complément harmonieux
   success: '#10b981',
   error: '#ef4444',
-  border: 'rgba(0, 0, 0, 0.05)',
+  border: 'rgba(79, 70, 229, 0.1)',
 };
 
 const darkTheme = {
@@ -67,16 +67,19 @@ const darkTheme = {
   textSecondary: '#cbd5e1',
   cardBackground: '#1e293b',
   shadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
-  accent: '#3b82f6',
-  hover: '#60a5fa',
-  secondary: '#f97316',
+  accent: '#6366f1', // Indigo plus clair
+  hover: '#4f46e5', // Indigo
+  secondary: '#3b82f6', // Bleu plus clair
   success: '#10b981',
   error: '#ef4444',
-  border: 'rgba(255, 255, 255, 0.1)',
+  border: 'rgba(99, 102, 241, 0.2)',
 };
 
 // Global styles
 const GlobalStyle = createGlobalStyle`
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+  
   * {
     margin: 0;
     padding: 0;
@@ -100,7 +103,6 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden;
     transition: background 0.3s ease, color 0.3s ease;
   }
-  
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.2;
@@ -294,16 +296,33 @@ const WavingHand = styled(motion.span)`
 
 const Name = styled(motion.h1)`
   font-size: 4rem;
-  font-weight: 800;
+  font-weight: 600; /* Réduit de 800 à 600 pour moins de graisse */
+  font-family: 'Poppins', 'Inter', sans-serif; /* Nouvelle police plus élégante */
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, ${({ theme }) => theme.accent}, ${({ theme }) => theme.secondary});
+  background: linear-gradient(135deg, #6366f1, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(99, 102, 241, 0.15);
+  letter-spacing: 0.01em; /* Légèrement positif pour plus d'espace entre les lettres */
+  position: relative;
+  display: inline-block;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    height: 2px; /* Plus fin */
+    background: linear-gradient(90deg, #6366f1, transparent);
+    border-radius: 2px;
+  }
   
   @media (max-width: 768px) {
     font-size: 3rem;
   }
 `;
+
 
 const Role = styled(motion.h2)`
   font-size: 2rem;

@@ -240,7 +240,7 @@ const Navbar = ({ toggleTheme, toggleLanguage, isDark }) => {
       setIsScrolled(window.scrollY > 50);
       
       // Determine active section based on scroll position
-      const sections = ['home', 'about', 'projects', 'skills', 'contact'];
+      const sections = ['home', 'about', 'projects', 'certificates', 'skills', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -274,9 +274,11 @@ const Navbar = ({ toggleTheme, toggleLanguage, isDark }) => {
     { name: t('home'), href: '#home' },
     { name: t('about'), href: '#about' },
     { name: t('projects'), href: '#projects' },
+    { name: t('certificates'), href: '#certificates' },
     { name: t('skills'), href: '#skills' },
     { name: t('contact'), href: '#contact' },
   ];
+  
   
   const closeMenu = () => setIsOpen(false);
 

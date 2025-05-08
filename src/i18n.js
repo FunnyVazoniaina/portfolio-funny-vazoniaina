@@ -28,7 +28,7 @@ const resources = {
       terms: "Terms",
       contactMe: "Contact Me",
       downloadCV: "Download CV",
-      viewProject: "View Project",
+      viewProject: "Live Demo",
       
       // Navbar
       home: "Home",
@@ -36,6 +36,9 @@ const resources = {
       projects: "Projects",
       skills: "Skills",
       contact: "Contact",
+      "certificates": "Certificates",
+
+
       
       // Greeting
       "Greeting,": "Hi there,",
@@ -107,6 +110,7 @@ const resources = {
       projects: "Projets",
       skills: "Compétences",
       contact: "Contact",
+      "certificates": "Certificats",
       
       // Greeting
       "Greeting,": "Bonjour,",
