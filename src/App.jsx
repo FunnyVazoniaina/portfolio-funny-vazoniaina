@@ -921,7 +921,7 @@ const App = () => {
       technologies: ['Flutter', 'Firebase'],
       link: 'https://example.com',
       githubLink: 'https://github.com/FunnyVazoniaina/project2',
-      image: '/images/project2.jpg'
+      image: '/images/fitness.png'
     },
     {
       title: 'Recruitment Management Platform',
@@ -929,7 +929,7 @@ const App = () => {
       technologies: ['Node.js', 'ReactJS', 'MySQL'],
       link: 'https://example.com/recruitment',
       githubLink: 'https://github.com/FunnyVazoniaina/recruitment',
-      image: '/images/project3.jpg'
+      image: '/images/management.png'
     },
     {
       title: 'ToDo App with Authentication',
@@ -937,7 +937,7 @@ const App = () => {
       technologies: ['PostgreSQL', 'Node.js', 'ReactJS'],
       link: 'https://example.com/todo',
       githubLink: 'https://github.com/FunnyVazoniaina/todo-app',
-      image: '/images/project4.jpg'
+      image: '/images/TOdO.jpg'
     },
     {
       title: 'Medical Center Desktop App',
@@ -945,7 +945,7 @@ const App = () => {
       technologies: ['Java Swing', 'MySQL', 'Hibernate'],
       link: 'https://example.com/medical',
       githubLink: 'https://github.com/FunnyVazoniaina/medical-center',
-      image: '/images/project5.jpg'
+      image: '/images/medical.png'
     },
   ];
 

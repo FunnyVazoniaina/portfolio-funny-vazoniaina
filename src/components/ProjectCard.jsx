@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaGithub, FaStar } from 'react-icons/fa';
 
 const Card = styled(motion.div)`
   background: ${({ theme, isDark }) => 
@@ -37,6 +37,29 @@ const Card = styled(motion.div)`
   
   &:hover::before {
     transform: scaleX(1);
+  }
+`;
+
+// Ajout du composant pour l'icône dans le coin
+const ProjectIcon = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: ${({ theme }) => theme.accent};
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transition: all 0.3s ease;
+  
+  ${Card}:hover & {
+    transform: scale(1.1) rotate(10deg);
   }
 `;
 
@@ -167,6 +190,11 @@ const ProjectCard = ({ title, description, technologies, link, githubLink, image
       transition={{ duration: 0.5 }}
       whileHover={{ y: -10 }}
     >
+      {/* Ajout de l'icône dans le coin supérieur gauche */}
+      <ProjectIcon>
+        <FaStar />
+      </ProjectIcon>
+      
       <ProjectImage isDark={isDark}>
         <img src={projectImage} alt={title} />
       </ProjectImage>
