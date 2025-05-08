@@ -190,11 +190,12 @@ const SectionSubtitle = styled.p`
 
 // Home Section
 const HomeSection = styled(Section)`
-  min-height: 100vh;
+   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-top: 8rem;
+  padding-bottom: 4rem; // Ajout d'un padding-bottom réduit (au lieu de 6rem par défaut)
   position: relative;
   overflow: hidden;
   
@@ -407,9 +408,12 @@ const OutlineButton = styled(motion.a)`
 
 // About Section
 const AboutSection = styled(Section)`
-  background: ${({ theme }) => theme.backgroundAlt};
+  background: ${({ theme }) => theme.background};
   position: relative;
   overflow: hidden;
+  padding: 4rem 0.75rem 3rem; // Réduction du padding bottom de 4rem à 3rem
+  max-width: 100%;
+  width: 100%;
   
   &::before {
     content: '';
@@ -436,11 +440,14 @@ const AboutSection = styled(Section)`
   }
 `;
 
+
+
 const AboutContent = styled.div`
   position: relative;
   z-index: 1;
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 1rem; // Ajouter un peu de padding horizontal
   font-size: 1.15rem;
   line-height: 1.9;
   color: ${({ theme }) => theme.textSecondary};
@@ -454,13 +461,14 @@ const AboutText = styled(motion.p)`
 const ServicesGrid = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: 1.5rem; // Réduit de 2rem à 1.5rem
   margin-top: 4rem;
+  padding: 0 0.5rem; // Petit padding pour éviter que les cartes touchent les bords
 `;
 
 const ServiceCard = styled(motion.div)`
   background: ${({ theme }) => theme.cardBackground};
-  padding: 2rem;
+  padding: 1.75rem; // Légèrement réduit de 2rem
   border-radius: 16px;
   box-shadow: ${({ theme }) => theme.shadow};
   text-align: center;
@@ -495,20 +503,23 @@ const ServiceDescription = styled.p`
 `;
 
 // Projects Section
-
 const ProjectsSection = styled(Section)`
   position: relative;
   overflow: hidden;
+  padding: 3rem 1.5rem 3rem; // Augmenté le padding horizontal de 0.75rem à 1.5rem
+  max-width: 100%;
+  width: 100%;
 `;
 
 const ProjectsGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(2, 1fr); // Maintenir 2 colonnes
+  gap: 2.5rem; // Augmenter légèrement l'espace entre les cartes
   margin-top: 3rem;
   
   @media (max-width: 768px) {
-       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: 1fr; // Une seule colonne sur mobile
+    gap: 2rem; // Réduire légèrement l'espace sur mobile
   }
 `;
 
@@ -517,11 +528,11 @@ const SkillsSection = styled(Section)`
   background: ${({ theme }) => theme.backgroundAlt};
   position: relative;
   overflow: hidden;
-  padding: 6rem 0.5rem; // Réduire davantage le padding horizontal
-  max-width: 100%; // Utiliser toute la largeur disponible
+  padding: 3rem 0.5rem 3rem; // Réduction du padding bottom de 6rem à 3rem
+  max-width: 100%;
   
   @media (max-width: 768px) {
-    padding: 4rem 0.5rem;
+    padding: 3rem 0.5rem 3rem; // Également réduit pour les écrans mobiles
   }
 `;
 
@@ -577,6 +588,7 @@ const SkillsGrid = styled(motion.div)`
 const ContactSection = styled(Section)`
   position: relative;
   overflow: hidden;
+  padding: 3rem 1rem 6rem; // Réduction du padding top de 6rem à 3rem
   
   &::before {
     content: '';

@@ -41,7 +41,7 @@ const Card = styled(motion.div)`
 `;
 
 const ProjectImage = styled.div`
-  height: 200px;
+  height: 180px; 
   overflow: hidden;
   position: relative;
   
@@ -73,23 +73,23 @@ const ProjectImage = styled.div`
 `;
 
 const Content = styled.div`
-  padding: 1.8rem;
+  padding: 1.5rem;
 `;
 
 const Title = styled.h3`
-  font-size: 1.4rem;
+   font-size: 1.3rem; // Réduit de 1.4rem à 1.3rem
   font-weight: 700;
   color: ${({ theme, isDark }) => (isDark ? '#e2e8f0' : '#1e293b')};
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.7rem; // Réduit de 0.8rem à 0.7rem
   position: relative;
   display: inline-block;
 `;
 
 const Description = styled.p`
   color: ${({ theme, isDark }) => (isDark ? '#94a3b8' : '#64748b')};
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  font-size: 0.95rem; // Réduit de 1rem à 0.95rem
+  line-height: 1.5; // Réduit de 1.6 à 1.5
+  margin-bottom: 1.3rem; // Réduit de 1.5rem à 1.3rem
 `;
 
 const TechContainer = styled.div`
