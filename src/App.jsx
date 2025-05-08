@@ -146,7 +146,6 @@ const Section = styled.section`
   }
 `;
 
-
 const SectionTitle = styled(motion.h2)`
   font-size: 2.75rem;
   font-weight: 800;
@@ -525,32 +524,48 @@ const ProjectsGrid = styled(motion.div)`
 
 // Skills Section
 const SkillsSection = styled(Section)`
-  background: ${({ theme }) => theme.backgroundAlt};
+  background: ${({ theme }) => theme.background}; // Changé de backgroundAlt à background
   position: relative;
   overflow: hidden;
-  padding: 3rem 0.5rem 3rem; // Réduction du padding bottom de 6rem à 3rem
+  padding: 3rem 1.5rem 3rem; // Même padding horizontal que ProjectsSection (1.5rem)
   max-width: 100%;
+  width: 100%;
   
   @media (max-width: 768px) {
-    padding: 3rem 0.5rem 3rem; // Également réduit pour les écrans mobiles
+    padding: 3rem 1.5rem 3rem; // Également ajusté pour les écrans mobiles
   }
 `;
+
+
+// Créer un conteneur pour les paires de catégories
+const SkillsCategoriesContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); // Quatre catégories par ligne
+  gap: 0.5rem; // Espace minimal entre les colonnes
+  width: 100%;
+  
+  @media (max-width: 1400px) {
+    grid-template-columns: repeat(2, 1fr); // Deux colonnes sur les écrans moyens
+    gap: 1rem; // Un peu plus d'espace sur les écrans moyens
+  }
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; // Une seule colonne sur les petits écrans
+  }
+`;
+
 
 
 const SkillsCategory = styled(motion.div)`
-  margin-bottom: 3rem; // Réduire la marge (était 4rem)
+  margin-bottom: 0;
   width: 100%;
-  
-  &:last-child {
-    margin-bottom: 0;
-  }
 `;
 
 const CategoryTitle = styled.h3`
-  font-size: 1.75rem;
+  font-size: 1.4rem; // Réduit de 1.75rem
   font-weight: 700;
   color: ${({ theme }) => theme.text};
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem; // Réduit de 2rem
   text-align: center;
   position: relative;
   display: inline-block;
@@ -558,9 +573,9 @@ const CategoryTitle = styled.h3`
   &::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -6px; // Réduit de -8px
     left: 0;
-    width: 60px;
+    width: 50px; // Réduit de 60px
     height: 3px;
     background: ${({ theme }) => theme.accent};
     border-radius: 2px;
@@ -574,13 +589,9 @@ const CategoryContainer = styled.div`
 
 const SkillsGrid = styled(motion.div)`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem; // Réduire l'espacement (était 2rem)
+  grid-template-columns: 1fr; // Une seule colonne
+  gap: 1.5rem;
   width: 100%;
-  
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
 `;
 
 
@@ -588,7 +599,9 @@ const SkillsGrid = styled(motion.div)`
 const ContactSection = styled(Section)`
   position: relative;
   overflow: hidden;
-  padding: 3rem 1rem 6rem; // Réduction du padding top de 6rem à 3rem
+  padding: 3rem 1.5rem 6rem; // Ajusté pour correspondre aux autres sections (1.5rem horizontal)
+  max-width: 100%;
+  width: 100%;
   
   &::before {
     content: '';
@@ -627,34 +640,35 @@ const ContactContent = styled.div`
 const ContactDescription = styled(motion.p)`
   font-size: 1.2rem;
   color: ${({ theme }) => theme.textSecondary};
-  margin-bottom: 3rem;
-  line-height: 1.8;
+  margin-bottom: 2.5rem; // Réduit de 3rem à 2.5rem
+  line-height: 1.6; // Réduit de 1.8 à 1.6 pour diminuer l'interligne
   
   @media (max-width: 768px) {
     font-size: 1.1rem;
     margin-bottom: 2rem;
+    line-height: 1.5; // Encore plus réduit sur mobile
   }
   
   @media (max-width: 480px) {
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.4; // Minimum pour la lisibilité
   }
 `;
 
 const ContactIcons = styled(motion.div)`
   display: flex;
   justify-content: center;
-  gap: 1.8rem;
-  margin: 3rem auto;
+  gap: 1.5rem; // Réduit de 1.8rem à 1.5rem
+  margin: 2.5rem auto; // Réduit de 3rem à 2.5rem
   max-width: 500px;
   
   @media (max-width: 768px) {
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 1.2rem; // Réduit de 1.5rem à 1.2rem
   }
   
   @media (max-width: 480px) {
-    gap: 1.2rem;
+    gap: 1rem; // Réduit de 1.2rem à 1rem
   }
 `;
 
@@ -778,25 +792,27 @@ const ContactDivider = styled(motion.div)`
 `;
 
 const ContactCTA = styled(motion.div)`
-  margin-top: 4rem;
+  margin-top: 3rem; // Réduit de 4rem à 3rem
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.2rem; // Réduit de 1.5rem à 1.2rem
 `;
 
 const CTAText = styled.p`
   font-size: 1.3rem;
   font-weight: 600;
   color: ${({ theme }) => theme.text};
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem; // Réduit de 1rem à 0.8rem
   
   @media (max-width: 768px) {
     font-size: 1.2rem;
+    margin-bottom: 0.6rem;
   }
   
   @media (max-width: 480px) {
     font-size: 1.1rem;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -1147,103 +1163,106 @@ const App = () => {
         </ProjectsSection>
         
         <SkillsSection id="skills">
-          <TitleContainer>
-            <SectionTitle
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              {t('skillsTitle')}
-            </SectionTitle>
-            <SectionSubtitle>{t('skillsSubtitle')}</SectionSubtitle>
-          </TitleContainer>
-          
-          <SkillsCategory
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <CategoryContainer>
-              <CategoryTitle>Database Management Systems</CategoryTitle>
-            </CategoryContainer>
-            <SkillsGrid
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ staggerChildren: 0.2 }}
-            >
-              {skills.sgbd.map((skill, index) => (
-                <SkillCard key={index} {...skill} isDark={isDark} />
-              ))}
-            </SkillsGrid>
-          </SkillsCategory>
-          
-          <SkillsCategory
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <CategoryContainer>
-              <CategoryTitle>Programming Languages</CategoryTitle>
-            </CategoryContainer>
-            <SkillsGrid
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ staggerChildren: 0.2 }}
-            >
-              {skills.languages.map((skill, index) => (
-                <SkillCard key={index} {...skill} isDark={isDark} />
-              ))}
-            </SkillsGrid>
-          </SkillsCategory>
-          
-          <SkillsCategory
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <CategoryContainer>
-              <CategoryTitle>Frameworks & Libraries</CategoryTitle>
-            </CategoryContainer>
-            <SkillsGrid
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ staggerChildren: 0.2 }}
-            >
-              {skills.frameworks.map((skill, index) => (
-                <SkillCard key={index} {...skill} isDark={isDark} />
-              ))}
-            </SkillsGrid>
-          </SkillsCategory>
-          
-          <SkillsCategory
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <CategoryContainer>
-              <CategoryTitle>Web Technologies</CategoryTitle>
-            </CategoryContainer>
-            <SkillsGrid
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ staggerChildren: 0.2 }}
-            >
-              {skills.webTech.map((skill, index) => (
-                <SkillCard key={index} {...skill} isDark={isDark} />
-              ))}
-            </SkillsGrid>
-          </SkillsCategory>
-        </SkillsSection>
-        
+  <TitleContainer>
+    <SectionTitle
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      {t('skillsTitle')}
+    </SectionTitle>
+    <SectionSubtitle>{t('skillsSubtitle')}</SectionSubtitle>
+  </TitleContainer>
+  
+  <SkillsCategoriesContainer>
+    {/* Première paire */}
+    <SkillsCategory
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      <CategoryContainer>
+        <CategoryTitle>Database Management Systems</CategoryTitle>
+      </CategoryContainer>
+      <SkillsGrid
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ staggerChildren: 0.2 }}
+      >
+        {skills.sgbd.map((skill, index) => (
+          <SkillCard key={index} {...skill} isDark={isDark} />
+        ))}
+      </SkillsGrid>
+    </SkillsCategory>
+    
+    <SkillsCategory
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      <CategoryContainer>
+        <CategoryTitle>Programming Languages</CategoryTitle>
+      </CategoryContainer>
+      <SkillsGrid
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ staggerChildren: 0.2 }}
+      >
+        {skills.languages.map((skill, index) => (
+          <SkillCard key={index} {...skill} isDark={isDark} />
+        ))}
+      </SkillsGrid>
+    </SkillsCategory>
+    
+    {/* Deuxième paire */}
+    <SkillsCategory
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      <CategoryContainer>
+        <CategoryTitle>Frameworks & Libraries</CategoryTitle>
+      </CategoryContainer>
+      <SkillsGrid
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ staggerChildren: 0.2 }}
+      >
+        {skills.frameworks.map((skill, index) => (
+          <SkillCard key={index} {...skill} isDark={isDark} />
+        ))}
+      </SkillsGrid>
+    </SkillsCategory>
+    
+    <SkillsCategory
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      <CategoryContainer>
+        <CategoryTitle>Web Technologies</CategoryTitle>
+      </CategoryContainer>
+      <SkillsGrid
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ staggerChildren: 0.2 }}
+      >
+        {skills.webTech.map((skill, index) => (
+          <SkillCard key={index} {...skill} isDark={isDark} />
+        ))}
+      </SkillsGrid>
+    </SkillsCategory>
+  </SkillsCategoriesContainer>
+</SkillsSection>    
         <ContactSection id="contact">
           <TitleContainer>
             <SectionTitle
