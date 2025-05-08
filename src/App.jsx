@@ -61,11 +61,11 @@ const lightTheme = {
 };
 
 const darkTheme = {
-  background: '#0f172a',
-  backgroundAlt: '#1e293b',
+  background: '#0d1117', // GitHub Dark background
+  backgroundAlt: '#161b22', // GitHub Dark secondary background
   text: '#f1f5f9',
   textSecondary: '#cbd5e1',
-  cardBackground: '#1e293b',
+  cardBackground: '#161b22', // Ajusté pour correspondre au backgroundAlt
   shadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
   accent: '#6366f1', // Indigo plus clair
   hover: '#4f46e5', // Indigo
@@ -74,6 +74,7 @@ const darkTheme = {
   error: '#ef4444',
   border: 'rgba(99, 102, 241, 0.2)',
 };
+
 
 // Global styles
 const GlobalStyle = createGlobalStyle`
@@ -95,18 +96,18 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   
-  body {
-    font-family: 'Inter', 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
-    background: ${({ theme }) => theme.background};
-    color: ${({ theme }) => theme.text};
-    line-height: 1.6;
-    overflow-x: hidden;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 700;
-    line-height: 1.2;
-  }
+  // Dans le composant GlobalStyle
+body {
+  font-family: 'Inter', 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: ${({ theme }) => theme.background};
+  background-image: ${({ theme }) => theme === lightTheme ? 
+    'linear-gradient(120deg, #f8f9fc, #eef2ff 100%)' : 'none'};
+  color: ${({ theme }) => theme.text};
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
   
   a {
     text-decoration: none;

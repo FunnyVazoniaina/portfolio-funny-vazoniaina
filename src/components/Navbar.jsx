@@ -9,18 +9,20 @@ const Nav = styled(motion.nav)`
   top: 0;
   width: 100%;
   background: ${({ theme, isDark }) => 
-    isDark ? 'rgba(15, 23, 42, 0.85)' : 'rgba(248, 250, 252, 0.85)'};
+    isDark ? 'rgba(13, 17, 23, 0.85)' : 'rgba(248, 249, 252, 0.85)'};
   backdrop-filter: blur(12px);
   z-index: 1000;
   padding: ${({ isScrolled }) => (isScrolled ? '0.8rem 2rem' : '1.2rem 2rem')};
   transition: all 0.3s ease;
   box-shadow: ${({ theme, isDark, isScrolled }) => 
-    isScrolled ? (isDark ? '0 4px 20px rgba(0, 0, 0, 0.3)' : '0 4px 20px rgba(0, 0, 0, 0.08)') : 'none'};
+    isScrolled ? (isDark ? '0 4px 20px rgba(0, 0, 0, 0.3)' : '0 4px 20px rgba(99, 102, 241, 0.1)') : 'none'};
   
   @media (max-width: 768px) {
     padding: ${({ isScrolled }) => (isScrolled ? '0.8rem 1.5rem' : '1.2rem 1.5rem')};
   }
 `;
+
+
 
 const NavContainer = styled.div`
   max-width: 1400px;
