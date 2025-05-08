@@ -149,7 +149,7 @@ const Section = styled.section`
 const SectionTitle = styled(motion.h2)`
   font-size: 2.75rem;
   font-weight: 800;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem; // Réduit de 3rem à 2rem
   text-align: center;
   position: relative;
   display: inline-block;
@@ -160,7 +160,7 @@ const SectionTitle = styled(motion.h2)`
   &::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -8px; // Réduit de -10px à -8px
     left: 50%;
     transform: translateX(-50%);
     width: 80px;
@@ -176,14 +176,14 @@ const SectionTitle = styled(motion.h2)`
 
 const TitleContainer = styled.div`
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem; // Réduit de 4rem à 2rem
 `;
 
 const SectionSubtitle = styled.p`
   font-size: 1.2rem;
   color: ${({ theme }) => theme.textSecondary};
   max-width: 700px;
-  margin: 1.5rem auto 0;
+  margin: 0.5rem auto 0; // Réduit de 1.5rem à 0.5rem (minimum recommandé)
   text-align: center;
 `;
 
