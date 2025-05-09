@@ -1,7 +1,8 @@
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { FaHeart, FaCode } from 'react-icons/fa';
+import { FaHeart, FaCode, FaShareAlt, FaTimes } from 'react-icons/fa';
 
 // Animations pour les éléments du footer
 const fadeInUp = {
@@ -33,36 +34,6 @@ const FooterContent = styled.div`
   justify-content: center;
   max-width: 1200px;
   margin: 0 auto;
-`;
-
-const QRCodeContainer = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-`;
-
-const QRCodeImage = styled(motion.img)`
-  width: 150px;
-  height: 150px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  background: white;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
-`;
-
-const QRCodeCaption = styled.p`
-  font-size: 0.9rem;
-  color: ${({ theme }) => theme.textSecondary};
-  text-align: center;
-  max-width: 200px;
 `;
 
 const Copyright = styled(motion.div)`
@@ -104,6 +75,7 @@ const FooterBottomLink = styled(motion.a)`
   font-size: 0.95rem;
   transition: all 0.3s ease;
   position: relative;
+  cursor: pointer;
   
   &::after {
     content: '';
@@ -125,29 +97,81 @@ const FooterBottomLink = styled(motion.a)`
   }
 `;
 
+// Popup styles
+const PopupOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+`;
+
+const PopupContent = styled(motion.div)`
+  background: ${({ theme }) => theme.cardBackground};
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  max-width: 90%;
+  width: 350px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: ${({ theme }) => theme.textSecondary};
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  
+  &:hover {
+    color: ${({ theme }) => theme.accent};
+  }
+`;
+
+const QRCodeImage = styled(motion.img)`
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  background: white;
+  margin: 1rem 0;
+`;
+
+const QRCodeCaption = styled.p`
+  font-size: 1rem;
+  color: ${({ theme }) => theme.textSecondary};
+  text-align: center;
+  margin-top: 1rem;
+`;
+
+const PopupTitle = styled.h3`
+  font-size: 1.5rem;
+  color: ${({ theme }) => theme.text};
+  margin-bottom: 1rem;
+`;
+
 const Footer = ({ isDark }) => {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
+  const [showQRCode, setShowQRCode] = useState(false);
   
   return (
     <FooterStyled>
       <FooterContent>
-        <QRCodeContainer
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-        >
-          <QRCodeImage 
-            src="/qr-code.png" 
-            alt="Scan for contact info"
-            whileHover={{ rotate: 5 }}
-          />
-          <QRCodeCaption>
-            {t('scanQRCode')}
-          </QRCodeCaption>
-        </QRCodeContainer>
-        
         <Copyright
           initial="hidden"
           whileInView="visible"
@@ -183,9 +207,49 @@ const Footer = ({ isDark }) => {
             >
               {t('terms')}
             </FooterBottomLink>
+            <FooterBottomLink 
+              as="span"
+              onClick={() => setShowQRCode(true)}
+              whileHover={{ y: -2 }}
+              whileTap={{ y: 0 }}
+            >
+              <FaShareAlt style={{ marginRight: '5px' }} /> {t('share')}
+            </FooterBottomLink>
           </FooterBottom>
         </Copyright>
       </FooterContent>
+      
+      {/* QR Code Popup */}
+      <AnimatePresence>
+        {showQRCode && (
+          <PopupOverlay
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowQRCode(false)}
+          >
+            <PopupContent
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <CloseButton onClick={() => setShowQRCode(false)}>
+                <FaTimes />
+              </CloseButton>
+              <PopupTitle>{t('shareMyProfile')}</PopupTitle>
+              <QRCodeImage 
+                src="/QRCODE.svg" 
+                alt="Scan for contact info"
+                whileHover={{ rotate: 5 }}
+              />
+              <QRCodeCaption>
+                {t('scanQRCode')}
+              </QRCodeCaption>
+            </PopupContent>
+          </PopupOverlay>
+        )}
+      </AnimatePresence>
     </FooterStyled>
   );
 };

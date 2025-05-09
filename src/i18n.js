@@ -74,6 +74,7 @@ const resources = {
       scanQRCode: "Scan this QR code to share my portfolio!",
       madeWith: "Made with",
       and: "and",
+      Share: "Share",
     },
   },
   fr: {
@@ -146,6 +147,7 @@ const resources = {
       scanQRCode: "Scannez ce QR code pour partager mon portfolio!",
       madeWith: "Fait avec",
       and: "et",
+      Share: "Partager",
     },
   },
 };
