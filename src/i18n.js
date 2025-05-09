@@ -72,6 +72,7 @@ const resources = {
       
       // Footer
       scanQRCode: "Scan this QR code to share my portfolio!",
+      shareMyProfile: "shareMyProfile",
       madeWith: "Made with",
       and: "and",
       Share: "Share",
@@ -145,6 +146,7 @@ const resources = {
       
       // Footer
       scanQRCode: "Scannez ce QR code pour partager mon portfolio!",
+      shareMyProfile: "partagerMonProfile",
       madeWith: "Fait avec",
       and: "et",
       Share: "Partager",
