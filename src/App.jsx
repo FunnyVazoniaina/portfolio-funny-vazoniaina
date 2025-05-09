@@ -1292,7 +1292,7 @@ const App = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, staggerChildren: 0.1 }}
             >
-              <IconLink 
+              {/* <IconLink 
                 href="mailto:funnyvazoniaina@gmail.com" 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -1302,7 +1302,7 @@ const App = () => {
               >
                 <FaEnvelope />
                 <ContactTooltip>Email</ContactTooltip>
-              </IconLink>
+              </IconLink> */}
               <IconLink 
                 href="tel:+261342229428" 
                 whileHover={{ scale: 1.05 }}
