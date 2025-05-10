@@ -29,20 +29,9 @@ import {
   FaMedkit 
 } from 'react-icons/fa';
 import { RiHandHeartLine } from 'react-icons/ri';
-import { 
-  SiMysql, 
-  SiPostgresql, 
-  SiMongodb, 
-  SiJavascript, 
-  SiPhp, 
-  SiReact, 
-  SiNodedotjs, 
-  SiSymfony, 
-  SiNextdotjs, 
-  SiTailwindcss, 
-  SiHtml5 
-} from 'react-icons/si';
-import { DiJava } from 'react-icons/di';
+import { Icon } from '@iconify/react';
+import SimpleSkillItem from './components/SimpleSkillItem';
+
 
 // Modern color palette combining blue and purple tones
 const lightTheme = {
@@ -588,11 +577,12 @@ const CategoryContainer = styled.div`
 `;
 
 const SkillsGrid = styled(motion.div)`
-  display: grid;
-  grid-template-columns: 1fr; // Une seule colonne
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
   width: 100%;
 `;
+
 
 // Ajoutez ces styles avec vos autres définitions de style
 const CertificatesSection = styled(Section)`
@@ -909,12 +899,11 @@ const CTAText = styled.p`
     margin-bottom: 0.5rem;
   }
 `;
-
 const CTAButton = styled(motion.a)`
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: ${({ theme }) => theme.accent};
+  background: linear-gradient(135deg, ${({ theme }) => theme.accent}, ${({ theme }) => theme.secondary});
   color: white;
   padding: 1rem 2.5rem;
   border-radius: 50px;
@@ -922,7 +911,24 @@ const CTAButton = styled(motion.a)`
   font-size: 1.1rem;
   text-decoration: none;
   transition: all 0.3s ease;
-  box-shadow: 0 10px 20px ${({ theme }) => theme.accent}40;
+  box-shadow: 0 10px 20px ${({ theme }) => `${theme.accent}40`};
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, ${({ theme }) => theme.secondary}, ${({ theme }) => theme.accent});
+    z-index: -1;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    border-radius: 50px;
+  }
   
   @media (max-width: 768px) {
     padding: 0.9rem 2rem;
@@ -935,9 +941,12 @@ const CTAButton = styled(motion.a)`
   }
   
   &:hover {
-    background: ${({ theme }) => theme.hover};
     transform: translateY(-3px);
-    box-shadow: 0 15px 25px ${({ theme }) => theme.accent}60;
+    box-shadow: 0 15px 25px ${({ theme }) => `${theme.accent}60`};
+    
+    &:before {
+      opacity: 1;
+    }
   }
 `;
 
@@ -1066,7 +1075,7 @@ const App = () => {
       link: "https://www.coursera.org/certificate/example3/"
     },
     {
-      title: "English For Developper B1",
+      title: "English For Developer B1",
       issuer: "freeCodeCamp",
       date: "Juin 2025",
       image: "/images/certificates/fullstack-cert.jpg",
@@ -1077,24 +1086,25 @@ const App = () => {
 
   const skills = {
     sgbd: [
-      { name: 'MySQL', level: 75, icon: <SiMysql /> },
-      { name: 'PostgreSQL', level: 50, icon: <SiPostgresql /> },
-      { name: 'MongoDB', level: 45, icon: <SiMongodb /> },
+      { name: 'MySQL', level: 75, iconName: 'logos:mysql' },
+      { name: 'PostgreSQL', level: 50, iconName: 'logos:postgresql' },
+      { name: 'MongoDB', level: 45, iconName: 'logos:mongodb' },
     ],
     languages: [
-      { name: 'JavaScript', level: 70, icon: <SiJavascript /> },
-      { name: 'Java', level: 40, icon: <DiJava /> },
-      { name: 'PHP', level: 60, icon: <SiPhp /> },
+      { name: 'JavaScript', level: 70, iconName: 'logos:javascript' },
+      { name: 'Java', level: 40, iconName: 'logos:java' },
+      { name: 'PHP', level: 60, iconName: 'logos:php' },
     ],
     frameworks: [
-      { name: 'ReactJS', level: 80, icon: <SiReact /> },
-      { name: 'Node.js', level: 75, icon: <SiNodedotjs /> },
-      { name: 'Symfony', level: 65, icon: <SiSymfony /> },
-      { name: 'NextJS', level: 70, icon: <SiNextdotjs /> },
-      { name: 'TailwindCSS', level: 85, icon: <SiTailwindcss /> },
+      { name: 'ReactJS', level: 80, iconName: 'logos:react' },
+      { name: 'Node.js', level: 75, iconName: 'logos:nodejs' },
+      { name: 'Symfony', level: 65, iconName: 'logos:symfony' },
+      { name: 'NextJS', level: 70, iconName: 'logos:nextjs-icon' },
+      { name: 'TailwindCSS', level: 85, iconName: 'logos:tailwindcss-icon' },
     ],
     webTech: [
-      { name: 'HTML & CSS', level: 70, icon: <SiHtml5 /> },
+      { name: 'HTML', level: 75, iconName: 'logos:html-5' },
+      { name: 'CSS', level: 70, iconName: 'logos:css-3' },
     ],
   };
 
@@ -1335,7 +1345,7 @@ const App = () => {
 </CertificatesSection>
 
 
-        <SkillsSection id="skills">
+<SkillsSection id="skills">
   <TitleContainer>
     <SectionTitle
       initial={{ opacity: 0, y: 30 }}
@@ -1349,7 +1359,6 @@ const App = () => {
   </TitleContainer>
   
   <SkillsCategoriesContainer>
-    {/* Première paire */}
     <SkillsCategory
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -1366,7 +1375,11 @@ const App = () => {
         transition={{ staggerChildren: 0.2 }}
       >
         {skills.sgbd.map((skill, index) => (
-          <SkillCard key={index} {...skill} isDark={isDark} />
+          <SimpleSkillItem 
+            key={index} 
+            {...skill} 
+            isDark={isDark} 
+          />
         ))}
       </SkillsGrid>
     </SkillsCategory>
@@ -1387,12 +1400,15 @@ const App = () => {
         transition={{ staggerChildren: 0.2 }}
       >
         {skills.languages.map((skill, index) => (
-          <SkillCard key={index} {...skill} isDark={isDark} />
+          <SimpleSkillItem 
+            key={index} 
+            {...skill} 
+            isDark={isDark} 
+          />
         ))}
       </SkillsGrid>
     </SkillsCategory>
     
-    {/* Deuxième paire */}
     <SkillsCategory
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -1409,7 +1425,11 @@ const App = () => {
         transition={{ staggerChildren: 0.2 }}
       >
         {skills.frameworks.map((skill, index) => (
-          <SkillCard key={index} {...skill} isDark={isDark} />
+          <SimpleSkillItem 
+            key={index} 
+            {...skill} 
+            isDark={isDark} 
+          />
         ))}
       </SkillsGrid>
     </SkillsCategory>
@@ -1430,12 +1450,16 @@ const App = () => {
         transition={{ staggerChildren: 0.2 }}
       >
         {skills.webTech.map((skill, index) => (
-          <SkillCard key={index} {...skill} isDark={isDark} />
+          <SimpleSkillItem 
+            key={index} 
+            {...skill} 
+            isDark={isDark} 
+          />
         ))}
       </SkillsGrid>
     </SkillsCategory>
   </SkillsCategoriesContainer>
-</SkillsSection>    
+</SkillsSection>
         <ContactSection id="contact">
           <TitleContainer>
             <SectionTitle

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { Icon } from '@iconify/react';
 
 const SkillContainer = styled(motion.div)`
   display: flex;
@@ -15,12 +16,8 @@ const SkillIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
+  color: ${({ theme }) => theme.accent};
+  font-size: 2rem;
 `;
 
 const SkillInfo = styled.div`
@@ -50,7 +47,7 @@ const SkillBar = styled.div`
   border-radius: 4px;
 `;
 
-const SimpleSkillItem = ({ name, level, iconSrc, isDark }) => {
+const SimpleSkillItem = ({ name, level, iconName, isDark }) => {
   return (
     <SkillContainer
       initial={{ opacity: 0, x: -20 }}
@@ -59,7 +56,7 @@ const SimpleSkillItem = ({ name, level, iconSrc, isDark }) => {
       transition={{ duration: 0.5 }}
     >
       <SkillIcon>
-        <img src={iconSrc} alt={name} />
+        <Icon icon={iconName} />
       </SkillIcon>
       <SkillInfo>
         <SkillName>{name}</SkillName>
