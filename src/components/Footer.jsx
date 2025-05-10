@@ -16,15 +16,7 @@ const FooterStyled = styled.footer`
   position: relative;
   overflow: hidden;
   
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, ${({ theme }) => theme.accent}, ${({ theme }) => theme.secondary});
-  }
+ 
 `;
 
 const FooterContent = styled.div`
