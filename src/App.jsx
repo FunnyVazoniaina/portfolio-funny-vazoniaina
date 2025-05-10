@@ -1541,7 +1541,7 @@ const App = () => {
                 <ContactTooltip>LinkedIn</ContactTooltip>
               </IconLink>
               <IconLink 
-                href="https://web.facebook.com/vazuniaina.funy/" 
+                href="https://web.faceboo.com/vazuniaina.funy/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
