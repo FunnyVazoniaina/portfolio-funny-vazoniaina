@@ -2,12 +2,89 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-   
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>funnyvazoniaina@portfolio</title>
+    <style>
+      /* Styles pour l'écran de chargement */
+      .loader-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #121212;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+
+      .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #ffffff;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        animation: rotation 1s linear infinite;
+      }
+
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loader-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      html {
+        overflow: hidden;
+      }
+
+      html.loaded {
+        overflow: auto;
+      }
+    </style>
   </head>
   <body>
+    <!-- Écran de chargement -->
+    <div class="loader-container" id="loader">
+      <div class="loader"></div>
+    </div>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <script>
+      // Script pour gérer l'écran de chargement
+      window.addEventListener('load', function() {
+        const loader = document.getElementById('loader');
+        
+        // Fonction pour masquer l'écran de chargement
+        function hideLoader() {
+          loader.classList.add('loader-hidden');
+          document.documentElement.classList.add('loaded');
+          
+          // Supprimer complètement le loader après la transition
+          loader.addEventListener('transitionend', function() {
+            if (loader.parentNode) {
+              loader.parentNode.removeChild(loader);
+            }
+          }, { once: true });
+        }
+        
+        // Attendre un court délai pour que l'application React se charge (réduit à 800ms)
+        setTimeout(hideLoader, 800);
+        
+        // Fallback au cas où le chargement prendrait trop de temps (réduit à 3000ms)
+        setTimeout(hideLoader, 3000);
+      });
+    </script>
   </body>
 </html>
