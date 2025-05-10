@@ -1086,7 +1086,7 @@ const App = () => {
 
   const skills = {
     sgbd: [
-      { name: 'MySQL', level: 75, iconName: 'logos:mysql' },
+      { name: 'MySQL', level: 70, iconName: 'logos:mysql' },
       { name: 'PostgreSQL', level: 50, iconName: 'logos:postgresql' },
       { name: 'MongoDB', level: 45, iconName: 'logos:mongodb' },
     ],
@@ -1096,11 +1096,11 @@ const App = () => {
       { name: 'PHP', level: 60, iconName: 'logos:php' },
     ],
     frameworks: [
-      { name: 'ReactJS', level: 80, iconName: 'logos:react' },
+      { name: 'ReactJS', level: 70, iconName: 'logos:react' },
       { name: 'Node.js', level: 75, iconName: 'logos:nodejs' },
       { name: 'Symfony', level: 65, iconName: 'logos:symfony' },
-      { name: 'NextJS', level: 70, iconName: 'logos:nextjs-icon' },
-      { name: 'TailwindCSS', level: 85, iconName: 'logos:tailwindcss-icon' },
+      { name: 'NextJS', level: 58, iconName: 'logos:nextjs-icon' },
+      { name: 'TailwindCSS', level: 61, iconName: 'logos:tailwindcss-icon' },
     ],
     webTech: [
       { name: 'HTML', level: 75, iconName: 'logos:html-5' },
