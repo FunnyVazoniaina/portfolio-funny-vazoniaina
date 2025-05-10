@@ -1058,21 +1058,21 @@ const App = () => {
       issuer: "Udemy",
       date: "Mai 2025",
       image: "/images/certificates/LinuxCommand.jpg",
-      link: "https://www.udemy.com/certificate/example1/"
+      link: "https://www.udemy.com/certificate/UC-f56c9a97-74b9-47b0-99ea-f7b1ba95e656/"
     },
     {
       title: "AI-Powered SCRUM Master",
       issuer: "Udemy",
       date: "Juin 2025",
-      image: "/images/certificates/javascript-cert.jpg",
-      link: "https://www.udemy.com/certificate/example2/"
+      image: "/images/certificates/SCRUM.jpg",
+      link: "https://www.udemy.com/certificate/UC-c684db30-954f-4249-92fd-2d9795d0e133/"
     },
     {
       title: "GitHub Fundamentals",
       issuer: "Mindluster",
       date: "Mai 2025",
-      image: "/images/certificates/nodejs-cert.jpg",
-      link: "https://www.coursera.org/certificate/example3/"
+      image: "/images/certificates/github.jpg",
+      link: "https://www.mindluster.com/student/certificate/44028272"
     },
     {
       title: "English For Developer B1",
