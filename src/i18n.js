@@ -59,6 +59,11 @@ const resources = {
       // Projects section
       projectsSubtitle: "Check out some of my recent work",
       
+      //Certificate section
+      "certificatesTitle": "Certificates",
+      "certificatesSubtitle": "My educational achievements and certifications",
+      "viewCertificate": "View Certificate",
+
       // Skills section
       skillsSubtitle: "Technologies I work with",
       
@@ -132,6 +137,11 @@ const resources = {
       
       // Projects section
       projectsSubtitle: "Découvrez quelques-uns de mes travaux récents",
+      
+      // Certificate section
+      "certificatesTitle": "Certificats",
+      "certificatesSubtitle": "Mes réalisations éducatives et certifications",
+      "viewCertificate": "Voir le certificat",
       
       // Skills section
       skillsSubtitle: "Technologies avec lesquelles je travaille",

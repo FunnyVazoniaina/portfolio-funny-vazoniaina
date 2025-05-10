@@ -594,6 +594,100 @@ const SkillsGrid = styled(motion.div)`
   width: 100%;
 `;
 
+// Ajoutez ces styles avec vos autres définitions de style
+const CertificatesSection = styled(Section)`
+  position: relative;
+  overflow: hidden;
+  padding: 3rem 1.5rem 3rem;
+  max-width: 100%;
+  width: 100%;
+  background: ${({ theme }) => theme.background}; // Modifié ici
+`;
+
+
+const CertificatesGrid = styled(motion.div)`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+`;
+
+const CertificateCard = styled(motion.div)`
+  background: ${({ theme }) => theme.cardBackground};
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: ${({ theme }) => theme.shadow};
+  transition: all 0.3s ease;
+  border: 1px solid ${({ theme }) => theme.border};
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px ${({ theme }) => theme.shadow};
+  }
+`;
+
+const CertificateImage = styled.div`
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  ${CertificateCard}:hover & img {
+    transform: scale(1.05);
+  }
+`;
+
+const CertificateContent = styled.div`
+  padding: 1.5rem;
+`;
+
+const CertificateTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: ${({ theme }) => theme.text};
+`;
+
+const CertificateIssuer = styled.p`
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.accent};
+  margin-bottom: 1rem;
+  font-weight: 500;
+`;
+
+const CertificateDate = styled.p`
+  font-size: 0.85rem;
+  color: ${({ theme }) => theme.textSecondary};
+  margin-bottom: 1rem;
+`;
+
+const CertificateLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.accent};
+  font-weight: 500;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    color: ${({ theme }) => theme.hover};
+    gap: 0.75rem;
+  }
+`;
+
+
 
 // Contact Section
 const ContactSection = styled(Section)`
@@ -949,6 +1043,38 @@ const App = () => {
     },
   ];
 
+  const certificates = [
+    {
+      title: "Linux Command Line",
+      issuer: "Udemy",
+      date: "Mai 2025",
+      image: "/images/certificates/LinuxCommand.jpg",
+      link: "https://www.udemy.com/certificate/example1/"
+    },
+    {
+      title: "AI-Powered SCRUM Master",
+      issuer: "Udemy",
+      date: "Juin 2025",
+      image: "/images/certificates/javascript-cert.jpg",
+      link: "https://www.udemy.com/certificate/example2/"
+    },
+    {
+      title: "GitHub Fundamentals",
+      issuer: "Mindluster",
+      date: "Mai 2025",
+      image: "/images/certificates/nodejs-cert.jpg",
+      link: "https://www.coursera.org/certificate/example3/"
+    },
+    {
+      title: "English For Developper B1",
+      issuer: "freeCodeCamp",
+      date: "Juin 2025",
+      image: "/images/certificates/fullstack-cert.jpg",
+      link: "https://www.freecodecamp.org/certification/example4/"
+    }
+  ];
+  
+
   const skills = {
     sgbd: [
       { name: 'MySQL', level: 75, icon: <SiMysql /> },
@@ -1161,7 +1287,54 @@ const App = () => {
             ))}
           </ProjectsGrid>
         </ProjectsSection>
-        
+
+        {/* Certificate section */}
+
+
+        <CertificatesSection id="certificates">
+  <TitleContainer>
+    <SectionTitle
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
+      {t('certificatesTitle')}
+    </SectionTitle>
+    <SectionSubtitle>{t('certificatesSubtitle')}</SectionSubtitle>
+  </TitleContainer>
+  
+  <CertificatesGrid
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    viewport={{ once: true }}
+    transition={{ staggerChildren: 0.2 }}
+  >
+    {certificates.map((certificate, index) => (
+      <CertificateCard
+        key={index}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <CertificateImage>
+          <img src={certificate.image} alt={certificate.title} />
+        </CertificateImage>
+        <CertificateContent>
+          <CertificateTitle>{certificate.title}</CertificateTitle>
+          <CertificateIssuer>{certificate.issuer}</CertificateIssuer>
+          <CertificateDate>{certificate.date}</CertificateDate>
+          <CertificateLink href={certificate.link} target="_blank" rel="noopener noreferrer">
+            {t('viewCertificate')} →
+          </CertificateLink>
+        </CertificateContent>
+      </CertificateCard>
+    ))}
+  </CertificatesGrid>
+</CertificatesSection>
+
+
         <SkillsSection id="skills">
   <TitleContainer>
     <SectionTitle
