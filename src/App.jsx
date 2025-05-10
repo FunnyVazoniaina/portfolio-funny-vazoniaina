@@ -681,9 +681,9 @@ const CertificateLink = styled.a`
 
 // Contact Section
 const ContactSection = styled(Section)`
-  position: relative;
+position: relative;
   overflow: hidden;
-  padding: 3rem 1.5rem 6rem; // Ajusté pour correspondre aux autres sections (1.5rem horizontal)
+  padding: 3rem 1.5rem 3rem; 
   max-width: 100%;
   width: 100%;
   
@@ -876,18 +876,18 @@ const ContactDivider = styled(motion.div)`
 `;
 
 const ContactCTA = styled(motion.div)`
-  margin-top: 3rem; // Réduit de 4rem à 3rem
+   margin-top: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.2rem; // Réduit de 1.5rem à 1.2rem
+  gap: 1.2rem; 
 `;
 
 const CTAText = styled.p`
   font-size: 1.3rem;
   font-weight: 600;
   color: ${({ theme }) => theme.text};
-  margin-bottom: 0.8rem; // Réduit de 1rem à 0.8rem
+  margin-bottom: 0.8rem; 
   
   @media (max-width: 768px) {
     font-size: 1.2rem;
