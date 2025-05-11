@@ -1032,7 +1032,7 @@ const App = () => {
       technologies: ['Node.js', 'ReactJS', 'MySQL'],
       link: 'https://example.com/recruitment',
       githubLink: 'https://github.com/FunnyVazoniaina/recruitment',
-      image: '/images/management.png'
+      image: '/images/management1.png'
     },
     {
       title: 'ToDo App with Authentication',
@@ -1065,7 +1065,7 @@ const App = () => {
       issuer: "Udemy",
       date: "Juin 2025",
       image: "/images/certificates/SCRUM.jpg",
-      link: "https://www.udemy.com/certificate/UC-c684db30-954f-4249-92fd-2d9795d0e133/"
+      link: "https://www.udemy.com/certificate/example2/"
     },
     {
       title: "GitHub Fundamentals",
