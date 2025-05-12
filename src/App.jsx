@@ -6,7 +6,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ProjectCard from './components/ProjectCard';
 import SkillCard from './components/SkillCard';
-import { Analytics } from "@vercel/analytics/react"
+import ReactGA from "react-ga4";
 import { 
   FaDownload, 
   FaEnvelope, 
@@ -977,6 +977,9 @@ const ScrollToTop = styled(motion.button)`
   }
 `;
 
+ReactGA.initialize("G-XY2BEPZ0DL");
+
+
 const App = () => {
   const { t, i18n } = useTranslation();
   const [theme, setTheme] = useState(() => {
@@ -989,6 +992,8 @@ const App = () => {
   const currentTheme = isDark ? darkTheme : lightTheme;
 
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+    
     localStorage.setItem('theme', theme);
     
     const handleScroll = () => {
@@ -1188,21 +1193,29 @@ const App = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
               >
-                                <Button 
-                  href="#contact" 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaEnvelope /> {t('contactMe')}
-                </Button>
-                <OutlineButton 
-                  href="/cv.pdf" 
-                  download 
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaDownload /> {t('downloadCV')}
-                </OutlineButton>
+                <Button 
+                href="#contact" 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => ReactGA.event({
+                  category: 'User',
+                  action: 'Clicked Contact Button',
+                })}
+              >
+                <FaEnvelope /> {t('contactMe')}
+              </Button>
+              <OutlineButton 
+                href="/cv.pdf" 
+                download 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => ReactGA.event({
+                  category: 'User',
+                  action: 'Downloaded CV',
+                })}
+              >
+                <FaDownload /> {t('downloadCV')}
+              </OutlineButton>
               </ButtonContainer>
             </HomeText>
             <HomeImage
