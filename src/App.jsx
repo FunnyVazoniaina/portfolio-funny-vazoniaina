@@ -1070,7 +1070,7 @@ const App = () => {
       issuer: "Udemy",
       date: "Juin 2025",
       image: "/images/certificates/SCRUM.jpg",
-      link: "https://www.udemy.com/certificate/example2/"
+      link: "https://www.udemy.com/certificate/UC-c684db30-954f-4249-92fd-2d9795d0e133/"
     },
     {
       title: "GitHub Fundamentals",
@@ -1554,7 +1554,7 @@ const App = () => {
                 <ContactTooltip>LinkedIn</ContactTooltip>
               </IconLink>
               <IconLink 
-                href="https://web.faceboo.com/vazuniaina.funy/" 
+                href="https://web.facebook.com/vazuniaina.funy/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
