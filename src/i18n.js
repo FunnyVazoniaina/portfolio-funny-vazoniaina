@@ -67,6 +67,12 @@ const resources = {
       // Skills section
       skillsSubtitle: "Technologies I work with",
       
+      // Skills categories - Exact titles from App.jsx
+      "Database Management Systems": "Database Management Systems",
+      "Programming Languages": "Programming Languages",
+      "Frameworks & Libraries": "Frameworks & Libraries",
+      "Web Technologies": "Web Technologies",
+      
       // SkillCard
       mastery: "Mastery",
       
@@ -145,6 +151,12 @@ const resources = {
       
       // Skills section
       skillsSubtitle: "Technologies avec lesquelles je travaille",
+      
+      // Skills categories - Exact titles from App.jsx
+      "Database Management Systems": "Systèmes de Gestion de Base de Données",
+      "Programming Languages": "Langages de Programmation",
+      "Frameworks & Libraries": "Frameworks & Bibliothèques",
+      "Web Technologies": "Technologies Web",
       
       // SkillCard
       mastery: "Maîtrise",

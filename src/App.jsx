@@ -183,7 +183,7 @@ const HomeSection = styled(Section)`
   flex-direction: column;
   justify-content: center;
   padding-top: 8rem;
-  padding-bottom: 4rem; // Ajout d'un padding-bottom réduit (au lieu de 6rem par défaut)
+  padding-bottom: 2rem; 
   position: relative;
   overflow: hidden;
   
@@ -399,7 +399,7 @@ const AboutSection = styled(Section)`
   background: ${({ theme }) => theme.background};
   position: relative;
   overflow: hidden;
-  padding: 4rem 0.75rem 3rem; // Réduction du padding bottom de 4rem à 3rem
+  padding: 2rem 0.75rem 3rem;
   max-width: 100%;
   width: 100%;
   
@@ -1372,106 +1372,107 @@ const App = () => {
   </TitleContainer>
   
   <SkillsCategoriesContainer>
-    <SkillsCategory
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+  <SkillsCategory
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+  >
+    <CategoryContainer>
+      <CategoryTitle>{t('Database Management Systems')}</CategoryTitle>
+    </CategoryContainer>
+    <SkillsGrid
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={{ staggerChildren: 0.2 }}
     >
-      <CategoryContainer>
-        <CategoryTitle>Database Management Systems</CategoryTitle>
-      </CategoryContainer>
-      <SkillsGrid
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ staggerChildren: 0.2 }}
-      >
-        {skills.sgbd.map((skill, index) => (
-          <SimpleSkillItem 
-            key={index} 
-            {...skill} 
-            isDark={isDark} 
-          />
-        ))}
-      </SkillsGrid>
-    </SkillsCategory>
-    
-    <SkillsCategory
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      {skills.sgbd.map((skill, index) => (
+        <SimpleSkillItem 
+          key={index} 
+          {...skill} 
+          isDark={isDark} 
+        />
+      ))}
+    </SkillsGrid>
+  </SkillsCategory>
+  
+  <SkillsCategory
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+  >
+    <CategoryContainer>
+      <CategoryTitle>{t('Programming Languages')}</CategoryTitle>
+    </CategoryContainer>
+    <SkillsGrid
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={{ staggerChildren: 0.2 }}
     >
-      <CategoryContainer>
-        <CategoryTitle>Programming Languages</CategoryTitle>
-      </CategoryContainer>
-      <SkillsGrid
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ staggerChildren: 0.2 }}
-      >
-        {skills.languages.map((skill, index) => (
-          <SimpleSkillItem 
-            key={index} 
-            {...skill} 
-            isDark={isDark} 
-          />
-        ))}
-      </SkillsGrid>
-    </SkillsCategory>
-    
-    <SkillsCategory
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      {skills.languages.map((skill, index) => (
+        <SimpleSkillItem 
+          key={index} 
+          {...skill} 
+          isDark={isDark} 
+        />
+      ))}
+    </SkillsGrid>
+  </SkillsCategory>
+  
+  <SkillsCategory
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+  >
+    <CategoryContainer>
+      <CategoryTitle>{t('Frameworks & Libraries')}</CategoryTitle>
+    </CategoryContainer>
+    <SkillsGrid
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={{ staggerChildren: 0.2 }}
     >
-      <CategoryContainer>
-        <CategoryTitle>Frameworks & Libraries</CategoryTitle>
-      </CategoryContainer>
-      <SkillsGrid
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ staggerChildren: 0.2 }}
-      >
-        {skills.frameworks.map((skill, index) => (
-          <SimpleSkillItem 
-            key={index} 
-            {...skill} 
-            isDark={isDark} 
-          />
-        ))}
-      </SkillsGrid>
-    </SkillsCategory>
-    
-    <SkillsCategory
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      {skills.frameworks.map((skill, index) => (
+        <SimpleSkillItem 
+          key={index} 
+          {...skill} 
+          isDark={isDark} 
+        />
+      ))}
+    </SkillsGrid>
+  </SkillsCategory>
+  
+  <SkillsCategory
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6 }}
+  >
+    <CategoryContainer>
+      <CategoryTitle>{t('Web Technologies')}</CategoryTitle>
+    </CategoryContainer>
+    <SkillsGrid
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={{ staggerChildren: 0.2 }}
     >
-      <CategoryContainer>
-        <CategoryTitle>Web Technologies</CategoryTitle>
-      </CategoryContainer>
-      <SkillsGrid
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ staggerChildren: 0.2 }}
-      >
-        {skills.webTech.map((skill, index) => (
-          <SimpleSkillItem 
-            key={index} 
-            {...skill} 
-            isDark={isDark} 
-          />
-        ))}
-      </SkillsGrid>
-    </SkillsCategory>
-  </SkillsCategoriesContainer>
+      {skills.webTech.map((skill, index) => (
+        <SimpleSkillItem 
+          key={index} 
+          {...skill} 
+          isDark={isDark} 
+        />
+      ))}
+    </SkillsGrid>
+  </SkillsCategory>
+</SkillsCategoriesContainer>
+
 </SkillsSection>
         <ContactSection id="contact">
           <TitleContainer>
