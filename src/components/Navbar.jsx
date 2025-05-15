@@ -288,6 +288,15 @@ const Navbar = ({ toggleTheme, toggleLanguage, isDark }) => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  // Wrapper functions that don't close the menu
+  const handleThemeToggle = () => {
+    toggleTheme();
+  };
+  
+  const handleLanguageToggle = () => {
+    toggleLanguage();
+  };
+
   return (
     <>
       <Nav 
@@ -390,10 +399,7 @@ const Navbar = ({ toggleTheme, toggleLanguage, isDark }) => {
               
               <MobileNavControls isDark={isDark}>
                 <LanguageToggle 
-                  onClick={() => {
-                    toggleLanguage();
-                    closeMenu();
-                  }}
+                  onClick={handleLanguageToggle}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -402,10 +408,7 @@ const Navbar = ({ toggleTheme, toggleLanguage, isDark }) => {
                 
                 <ThemeToggle 
                   isDark={isDark} 
-                  onClick={() => {
-                    toggleTheme();
-                    closeMenu();
-                  }}
+                  onClick={handleThemeToggle}
                   whileHover={{ scale: 1.1, rotate: 30 }}
                   whileTap={{ scale: 0.9, rotate: 0 }}
                 >
