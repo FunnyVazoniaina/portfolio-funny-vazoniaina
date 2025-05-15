@@ -22,8 +22,6 @@ const Nav = styled(motion.nav)`
   }
 `;
 
-
-
 const NavContainer = styled.div`
   max-width: 1400px;
   margin: 0 auto;
@@ -84,6 +82,12 @@ const NavControls = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  
+  @media (max-width: 992px) {
+    .desktop-only {
+      display: none;
+    }
+  }
 `;
 
 const ThemeToggle = styled(motion.button)`
@@ -281,7 +285,7 @@ const Navbar = ({ toggleTheme, toggleLanguage, isDark }) => {
     { name: t('contact'), href: '#contact' },
   ];
   
-  
+  const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
   return (
@@ -317,6 +321,7 @@ const Navbar = ({ toggleTheme, toggleLanguage, isDark }) => {
               onClick={toggleLanguage}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              className="desktop-only"
             >
               <FaGlobe /> {i18n.language === 'en' ? 'FR' : 'EN'}
             </LanguageToggle>
@@ -326,16 +331,17 @@ const Navbar = ({ toggleTheme, toggleLanguage, isDark }) => {
               onClick={toggleTheme}
               whileHover={{ scale: 1.1, rotate: 30 }}
               whileTap={{ scale: 0.9, rotate: 0 }}
+              className="desktop-only"
             >
               {isDark ? <FaSun /> : <FaMoon />}
             </ThemeToggle>
             
             <Hamburger 
-              onClick={() => setIsOpen(true)}
+              onClick={toggleMenu}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              <FaBars />
+              {isOpen ? <FaTimes /> : <FaBars />}
             </Hamburger>
           </NavControls>
         </NavContainer>
