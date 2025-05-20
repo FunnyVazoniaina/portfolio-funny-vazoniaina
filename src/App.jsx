@@ -26,7 +26,8 @@ import {
   FaCheckSquare, 
   FaTasks, 
   FaHospital, 
-  FaMedkit 
+  FaMedkit, 
+  FaYoutube
 } from 'react-icons/fa';
 import { RiHandHeartLine } from 'react-icons/ri';
 import { Icon } from '@iconify/react';
@@ -1575,6 +1576,20 @@ const App = () => {
               >
                 <FaFacebook />
                 <ContactTooltip>Facebook</ContactTooltip>
+              </IconLink>
+              <IconLink 
+                href="https://youtube.com/@funnyvazoniainaluffy?si=KkDboQ3Fa0t-xuA9" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+              >
+                <FaYoutube />
+                <ContactTooltip>YouTube</ContactTooltip>
               </IconLink>
             </ContactIcons>
             
