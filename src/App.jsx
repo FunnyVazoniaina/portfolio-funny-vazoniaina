@@ -1055,6 +1055,14 @@ const App = () => {
       githubLink: 'https://github.com/FunnyVazoniaina/medical-center',
       image: '/images/medical.png'
     },
+    {
+      title: 'Food Suggester',
+      description: 'Food Suggester is a PWA that suggests easy recipes based on the ingredients you already have at home.',
+      technologies: ['ReactJS+Vite', 'ExpressJS', 'MySQL','SpoonacularAPI'],
+      link: 'https://vimeo.com/1085920498?share=copy',
+      githubLink: 'https://github.com/FunnyVazoniaina/foodSuggesterClient',
+      image: '/images/foodsuggester.png'
+    },
   ];
 
   const certificates = [
