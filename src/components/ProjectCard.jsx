@@ -176,11 +176,12 @@ const LinkButton = styled(motion.a)`
   }
 `;
 
-const ProjectCard = ({ title, description, technologies, link, githubLink, image, isDark }) => {
+const ProjectCard = ({ title, description, technologies, link, githubLink, image, isDark, onLiveDemoClick }) => {
   const { t } = useTranslation();
   
   // Default image if none provided
   const projectImage = image || `/images/project-placeholder.jpg`;
+  const isYoutubeLink = link && (link.includes('youtube.com') || link.includes('youtu.be'));
   
   return (
     <Card 
@@ -211,9 +212,12 @@ const ProjectCard = ({ title, description, technologies, link, githubLink, image
         <Links>
           <LinkButton 
             className="primary"
-            href={link} 
-            target="_blank" 
-            rel="noopener noreferrer"
+            as={isYoutubeLink && onLiveDemoClick ? 'button' : 'a'}
+            href={isYoutubeLink && onLiveDemoClick ? undefined : link}
+            type={isYoutubeLink && onLiveDemoClick ? 'button' : undefined}
+            target={isYoutubeLink ? undefined : '_blank'}
+            rel={isYoutubeLink ? undefined : 'noopener noreferrer'}
+            onClick={isYoutubeLink && onLiveDemoClick ? (e) => { e.preventDefault(); onLiveDemoClick(); } : undefined}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

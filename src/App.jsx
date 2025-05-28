@@ -32,6 +32,7 @@ import {
 import { RiHandHeartLine } from 'react-icons/ri';
 import { Icon } from '@iconify/react';
 import SimpleSkillItem from './components/SimpleSkillItem';
+import YoutubeModal from './components/YoutubeModal';
 
 
 // Modern color palette combining blue and purple tones
@@ -552,7 +553,7 @@ const SkillsCategory = styled(motion.div)`
 `;
 
 const CategoryTitle = styled.h3`
-  font-size: 1.4rem; // Réduit de 1.75rem
+  font-size: 1.4rem; // Réduits de 1.75rem
   font-weight: 700;
   color: ${({ theme }) => theme.text};
   margin-bottom: 1.5rem; // Réduit de 2rem
@@ -988,6 +989,7 @@ const App = () => {
     return savedTheme || 'dark';
   });
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [youtubeModal, setYoutubeModal] = useState({ open: false, url: '' });
   
   const isDark = theme === 'dark';
   const currentTheme = isDark ? darkTheme : lightTheme;
@@ -1014,6 +1016,11 @@ const App = () => {
       behavior: 'smooth'
     });
   };
+
+  // Helper to check if a link is a YouTube URL
+  const isYoutubeLink = url =>
+    typeof url === 'string' &&
+    (url.includes('youtube.com') || url.includes('youtu.be'));
 
   const projects = [
     {
@@ -1303,7 +1310,6 @@ const App = () => {
             </SectionTitle>
             <SectionSubtitle>{t('projectsSubtitle')}</SectionSubtitle>
           </TitleContainer>
-          
           <ProjectsGrid
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -1315,6 +1321,10 @@ const App = () => {
                 key={index} 
                 {...project} 
                 isDark={isDark} 
+                onLiveDemoClick={isYoutubeLink(project.link)
+                  ? () => setYoutubeModal({ open: true, url: project.link })
+                  : undefined
+                }
               />
             ))}
           </ProjectsGrid>
@@ -1635,6 +1645,12 @@ const App = () => {
             </ScrollToTop>
           )}
         </AnimatePresence>
+
+        <YoutubeModal 
+          open={youtubeModal.open} 
+          youtubeUrl={youtubeModal.url} 
+          onClose={() => setYoutubeModal({ open: false, url: '' })} 
+        />
       </Container>
     </ThemeProvider>
     
