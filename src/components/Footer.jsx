@@ -12,11 +12,12 @@ const fadeInUp = {
 
 const FooterStyled = styled.footer`
   background: ${({ theme }) => theme.backgroundAlt};
-  padding: 2rem 2rem;
+  padding: 2.5rem 1.5rem 1.2rem 1.5rem;
   position: relative;
   overflow: hidden;
-  
- 
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+  box-shadow: 0 -4px 24px ${({ theme }) => theme.accent}10;
 `;
 
 const FooterContent = styled.div`
@@ -24,19 +25,19 @@ const FooterContent = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
 `;
 
 const Copyright = styled(motion.div)`
   text-align: center;
-  padding-top: 1.5rem;
+  padding-top: 1.2rem;
   border-top: 1px solid ${({ theme }) => theme.border};
   color: ${({ theme }) => theme.textSecondary};
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 0.7rem;
   width: 100%;
 `;
 
@@ -45,6 +46,7 @@ const HeartIcon = styled(FaHeart)`
   display: inline-block;
   margin: 0 0.25rem;
   animation: pulse 1.5s infinite;
+  vertical-align: middle;
   
   @keyframes pulse {
     0% { transform: scale(1); }
@@ -56,36 +58,42 @@ const HeartIcon = styled(FaHeart)`
 const FooterBottom = styled.div`
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-top: 1.5rem;
+  gap: 1.5rem;
+  margin-top: 1.2rem;
   flex-wrap: wrap;
 `;
 
 const FooterBottomLink = styled(motion.a)`
   color: ${({ theme }) => theme.textSecondary};
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  
+  &:hover {
+    color: ${({ theme }) => theme.accent};
+    background: ${({ theme }) => theme.accent}10;
+  }
   
   &::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 1px;
-    bottom: -2px;
+    height: 2px;
+    bottom: 0;
     left: 0;
     background-color: ${({ theme }) => theme.accent};
     transition: width 0.3s ease;
+    border-radius: 2px;
   }
   
-  &:hover {
-    color: ${({ theme }) => theme.accent};
-    
-    &::after {
-      width: 100%;
-    }
+  &:hover::after {
+    width: 100%;
   }
 `;
 
@@ -172,10 +180,10 @@ const Footer = ({ isDark }) => {
           transition={{ delay: 0.2 }}
         >
           <p>
-            © {currentYear} Funny VAZONIAINA. {t('allRightsReserved')}
+            <strong>© {currentYear} Funny VAZONIAINA.</strong> {t('allRightsReserved')}
           </p>
           <p>
-            {t('madeWith')} <HeartIcon aria-hidden="true" /> {t('and')} <FaCode style={{ display: 'inline-block', margin: '0 0.25rem' }} aria-hidden="true" />
+            {t('madeWith')} <HeartIcon aria-hidden="true" /> {t('and')} <FaCode style={{ display: 'inline-block', margin: '0 0.25rem', verticalAlign: 'middle' }} aria-hidden="true" />
           </p>
           <FooterBottom>
             <FooterBottomLink 
@@ -205,7 +213,7 @@ const Footer = ({ isDark }) => {
               whileHover={{ y: -2 }}
               whileTap={{ y: 0 }}
             >
-              <FaShareAlt style={{ marginRight: '5px' }} /> {t('share')}
+              <FaShareAlt style={{ marginRight: '5px', verticalAlign: 'middle' }} /> {t('share')}
             </FooterBottomLink>
           </FooterBottom>
         </Copyright>

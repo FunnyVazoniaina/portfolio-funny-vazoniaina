@@ -610,34 +610,65 @@ const CertificatesGrid = styled(motion.div)`
 `;
 
 const CertificateCard = styled(motion.div)`
-  background: ${({ theme }) => theme.cardBackground};
+  perspective: 1200px;
+  width: 100%;
+  min-height: 320px;
+  background: none;
   border-radius: 16px;
-  overflow: hidden;
+  position: relative;
   box-shadow: ${({ theme }) => theme.shadow};
-  transition: all 0.3s ease;
   border: 1px solid ${({ theme }) => theme.border};
-  
+  transition: box-shadow 0.3s;
+  cursor: pointer;
   &:hover {
-    transform: translateY(-10px);
     box-shadow: 0 20px 40px ${({ theme }) => theme.shadow};
   }
 `;
 
-const CertificateImage = styled.div`
+const CardInner = styled.div`
+  position: relative;
   width: 100%;
-  height: 200px;
+  height: 100%;
+  min-height: 320px;
+  transition: transform 0.7s cubic-bezier(0.4,0.2,0.2,1);
+  transform-style: preserve-3d;
+  ${CertificateCard}:hover & {
+    transform: rotateY(180deg);
+  }
+`;
+
+const CardFront = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: ${({ theme }) => theme.cardBackground};
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const CardBack = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background: ${({ theme }) => theme.cardBackground};
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateY(180deg);
   overflow: hidden;
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-  
-  ${CertificateCard}:hover & img {
-    transform: scale(1.05);
-  }
+`;
+
+const CertificateBackImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
 `;
 
 const CertificateContent = styled.div`
@@ -1027,7 +1058,7 @@ const App = () => {
       title: t('project1Title'),
       description: t('project1Desc'),
       technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      link: 'https://example.com',
+      link: 'https://www.youtube.com/watch?v=g-z-YxgKHLY&list=PLwLsbqvBlImHG5yeUCXJ1aqNMgUKi1NK3&index=14',
       githubLink: 'https://github.com/FunnyVazoniaina/project1',
       image: '/images/project1.jpg'
     },
@@ -1360,17 +1391,21 @@ const App = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <CertificateImage>
-          <img src={certificate.image} alt={certificate.title} />
-        </CertificateImage>
-        <CertificateContent>
-          <CertificateTitle>{certificate.title}</CertificateTitle>
-          <CertificateIssuer>{certificate.issuer}</CertificateIssuer>
-          <CertificateDate>{certificate.date}</CertificateDate>
-          <CertificateLink href={certificate.link} target="_blank" rel="noopener noreferrer">
-            {t('viewCertificate')} →
-          </CertificateLink>
-        </CertificateContent>
+        <CardInner>
+          <CardFront>
+            <CertificateContent>
+              <CertificateTitle>{certificate.title}</CertificateTitle>
+              <CertificateIssuer>{certificate.issuer}</CertificateIssuer>
+              <CertificateDate>{certificate.date}</CertificateDate>
+              <CertificateLink href={certificate.link} target="_blank" rel="noopener noreferrer">
+                {t('viewCertificate')} →
+              </CertificateLink>
+            </CertificateContent>
+          </CardFront>
+          <CardBack>
+            <CertificateBackImage src={certificate.image} alt={certificate.title} />
+          </CardBack>
+        </CardInner>
       </CertificateCard>
     ))}
   </CertificatesGrid>
