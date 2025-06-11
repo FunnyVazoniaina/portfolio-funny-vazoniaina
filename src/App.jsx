@@ -52,12 +52,12 @@ const lightTheme = {
 };
 
 const darkTheme = {
-  background: '#0d1117', // GitHub Dark background
+  background: '#0a0a0a', // GitHub Dark background
   backgroundAlt: '#161b22', // GitHub Dark secondary background
   text: '#f1f5f9',
   textSecondary: '#cbd5e1',
-  cardBackground: '#161b22', // Ajusté pour correspondre au backgroundAlt
-  shadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
+  cardBackground: '#1a1a1a', // Ajusté pour correspondre au backgroundAlt
+  shadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
   accent: '#6366f1', // Indigo plus clair
   hover: '#4f46e5', // Indigo
   secondary: '#3b82f6', // Bleu plus clair
