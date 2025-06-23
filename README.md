@@ -229,11 +229,11 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## 📞 Contact
 
-**Your Name** - [your.email@example.com](mailto:your.email@example.com)
+**Your Name** - [funnyvazoniaina@gmail.com](funnyvazoniaina@gmail.com)
 
-**Project Link:** [https://github.com/your-username/your-portfolio](https://github.com/your-username/your-portfolio)
+**Project Link:** [https://github.com/FunnyVazoniaina/portfolio-funny-vazoniaina/](https://github.com/FunnyVazoniaina/portfolio-funny-vazoniaina/)
 
-**Live Demo:** [https://your-portfolio.vercel.app](https://your-portfolio.vercel.app)
+**Live Demo:** [https://portfolio-funny-vazoniaina.vercel.app/](https://portfolio-funny-vazoniaina.vercel.app/)
 
 ## 🙏 Acknowledgments
 
