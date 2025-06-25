@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { FaHeart, FaCode, FaShareAlt, FaTimes } from 'react-icons/fa';
 
@@ -10,248 +9,128 @@ const fadeInUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
-const FooterStyled = styled.footer`
-  background: ${({ theme }) => theme.backgroundAlt};
-  padding: 2.5rem 1.5rem 1.2rem 1.5rem;
-  position: relative;
-  overflow: hidden;
-  border-top-left-radius: 32px;
-  border-top-right-radius: 32px;
-  box-shadow: 0 -4px 24px ${({ theme }) => theme.accent}10;
-`;
-
-const FooterContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 1100px;
-  margin: 0 auto;
-`;
-
-const Copyright = styled(motion.div)`
-  text-align: center;
-  padding-top: 1.2rem;
-  border-top: 1px solid ${({ theme }) => theme.border};
-  color: ${({ theme }) => theme.textSecondary};
-  font-size: 1.05rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  width: 100%;
-`;
-
-const HeartIcon = styled(FaHeart)`
-  color: ${({ theme }) => theme.error};
-  display: inline-block;
-  margin: 0 0.25rem;
-  animation: pulse 1.5s infinite;
-  vertical-align: middle;
-  
-  @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
-  }
-`;
-
-const FooterBottom = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 1.2rem;
-  flex-wrap: wrap;
-`;
-
-const FooterBottomLink = styled(motion.a)`
-  color: ${({ theme }) => theme.textSecondary};
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  transition: all 0.3s ease;
-  position: relative;
-  cursor: pointer;
-  padding: 0.2rem 0.5rem;
-  border-radius: 8px;
-  
-  &:hover {
-    color: ${({ theme }) => theme.accent};
-    background: ${({ theme }) => theme.accent}10;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: ${({ theme }) => theme.accent};
-    transition: width 0.3s ease;
-    border-radius: 2px;
-  }
-  
-  &:hover::after {
-    width: 100%;
-  }
-`;
-
-// Popup styles
-const PopupOverlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
-`;
-
-const PopupContent = styled(motion.div)`
-  background: ${({ theme }) => theme.cardBackground};
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  max-width: 90%;
-  width: 350px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const CloseButton = styled.button`
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: none;
-  border: none;
-  color: ${({ theme }) => theme.textSecondary};
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: color 0.3s ease;
-  
-  &:hover {
-    color: ${({ theme }) => theme.accent};
-  }
-`;
-
-const QRCodeImage = styled(motion.img)`
-  width: 200px;
-  height: 200px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  background: white;
-  margin: 1rem 0;
-`;
-
-const QRCodeCaption = styled.p`
-  font-size: 1rem;
-  color: ${({ theme }) => theme.textSecondary};
-  text-align: center;
-  margin-top: 1rem;
-`;
-
-const PopupTitle = styled.h3`
-  font-size: 1.5rem;
-  color: ${({ theme }) => theme.text};
-  margin-bottom: 1rem;
-`;
-
 const Footer = ({ isDark }) => {
   const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   const [showQRCode, setShowQRCode] = useState(false);
   
   return (
-    <FooterStyled>
-      <FooterContent>
-        <Copyright
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={fadeInUp}
-          transition={{ delay: 0.2 }}
-        >
-          <p>
-            <strong>© {currentYear} Funny VAZONIAINA.</strong> {t('allRightsReserved')}
-          </p>
-          <p>
-            {t('madeWith')} <HeartIcon aria-hidden="true" /> {t('and')} <FaCode style={{ display: 'inline-block', margin: '0 0.25rem', verticalAlign: 'middle' }} aria-hidden="true" />
-          </p>
-          <FooterBottom>
-            <FooterBottomLink 
-              href="#privacy"
-              whileHover={{ y: -2 }}
-              whileTap={{ y: 0 }}
-            >
-              {t('privacy')}
-            </FooterBottomLink>
-            <FooterBottomLink 
-              href="#security"
-              whileHover={{ y: -2 }}
-              whileTap={{ y: 0 }}
-            >
-              {t('security')}
-            </FooterBottomLink>
-            <FooterBottomLink 
-              href="#terms"
-              whileHover={{ y: -2 }}
-              whileTap={{ y: 0 }}
-            >
-              {t('terms')}
-            </FooterBottomLink>
-            <FooterBottomLink 
-              as="span"
-              onClick={() => setShowQRCode(true)}
-              whileHover={{ y: -2 }}
-              whileTap={{ y: 0 }}
-            >
-              <FaShareAlt style={{ marginRight: '5px', verticalAlign: 'middle' }} /> {t('share')}
-            </FooterBottomLink>
-          </FooterBottom>
-        </Copyright>
-      </FooterContent>
+    <>
+      <footer className="bg-gray-100 dark:bg-gray-800 px-6 py-10 pb-5 relative overflow-hidden shadow-[0_-4px_24px_rgba(59,130,246,0.1)] dark:shadow-[0_-4px_24px_rgba(59,130,246,0.1)]">
+        <div className="max-w-[1100px] mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            transition={{ delay: 0.2 }}
+            className="text-center text-gray-600 dark:text-gray-400 text-[1.05rem] space-y-3"
+          >
+            <p>
+              <strong>© {currentYear} Funny VAZONIAINA.</strong> {t('allRightsReserved')}
+            </p>
+            <p className="flex items-center justify-center gap-1">
+              {t('madeWith')} 
+              <FaHeart 
+                className="text-red-500 animate-heart-pulse" 
+                aria-hidden="true" 
+              /> 
+              {t('and')} 
+              <FaCode 
+                className="text-gray-600 dark:text-gray-400" 
+                aria-hidden="true" 
+              />
+            </p>
+            
+            <div className="flex items-center justify-center gap-6 mt-5 flex-wrap">
+              <motion.a
+                href="#privacy"
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+                className="text-gray-600 dark:text-gray-400 no-underline text-base font-medium tracking-wide transition-all duration-300 relative cursor-pointer py-1 px-2 rounded-lg hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 group"
+              >
+                {t('privacy')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 rounded-full group-hover:w-full"></span>
+              </motion.a>
+              
+              <motion.a
+                href="#security"
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+                className="text-gray-600 dark:text-gray-400 no-underline text-base font-medium tracking-wide transition-all duration-300 relative cursor-pointer py-1 px-2 rounded-lg hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 group"
+              >
+                {t('security')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 rounded-full group-hover:w-full"></span>
+              </motion.a>
+              
+              <motion.a
+                href="#terms"
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+                className="text-gray-600 dark:text-gray-400 no-underline text-base font-medium tracking-wide transition-all duration-300 relative cursor-pointer py-1 px-2 rounded-lg hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 group"
+              >
+                {t('terms')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 rounded-full group-hover:w-full"></span>
+              </motion.a>
+              
+              <motion.span
+                onClick={() => setShowQRCode(true)}
+                whileHover={{ y: -2 }}
+                whileTap={{ y: 0 }}
+                className="text-gray-600 dark:text-gray-400 no-underline text-base font-medium tracking-wide transition-all duration-300 relative cursor-pointer py-1 px-2 rounded-lg hover:text-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 group flex items-center gap-1.5"
+              >
+                <FaShareAlt className="align-middle" /> {t('share')}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 rounded-full group-hover:w-full"></span>
+              </motion.span>
+            </div>
+          </motion.div>
+        </div>
+      </footer>
       
       {/* QR Code Popup */}
       <AnimatePresence>
         {showQRCode && (
-          <PopupOverlay
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setShowQRCode(false)}
+            className="fixed inset-0 bg-black/70 flex justify-center items-center z-[1000] backdrop-blur-sm"
           >
-            <PopupContent
+            <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
+              className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.2)] max-w-[90%] w-[350px] relative flex flex-col items-center"
             >
-              <CloseButton onClick={() => setShowQRCode(false)}>
+              <button
+                onClick={() => setShowQRCode(false)}
+                className="absolute top-4 right-4 bg-transparent border-none text-gray-600 dark:text-gray-400 text-xl cursor-pointer transition-colors duration-300 hover:text-blue-500"
+              >
                 <FaTimes />
-              </CloseButton>
-              <PopupTitle>{t('shareMyProfile')}</PopupTitle>
-              <QRCodeImage 
+              </button>
+              
+              <h3 className="text-2xl text-gray-900 dark:text-white mb-4">
+                {t('shareMyProfile')}
+              </h3>
+              
+              <motion.img
                 src="/QRCODE.svg" 
                 alt="Scan for contact info"
                 whileHover={{ rotate: 5 }}
+                className="w-[200px] h-[200px] rounded-xl shadow-[0_5px_15px_rgba(0,0,0,0.1)] p-2.5 bg-white my-4"
               />
-              <QRCodeCaption>
+              
+              <p className="text-base text-gray-600 dark:text-gray-400 text-center mt-4">
                 {t('scanQRCode')}
-              </QRCodeCaption>
-            </PopupContent>
-          </PopupOverlay>
+              </p>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
-    </FooterStyled>
+    </>
   );
 };
-
+  
 export default Footer;
