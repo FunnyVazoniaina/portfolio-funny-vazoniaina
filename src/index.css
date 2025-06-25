@@ -1,6 +1,12 @@
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "tailwindcss";
+
+/* Your custom styles here */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.animate-heart-pulse {
+  animation: pulse 1.5s infinite ease-in-out;
 }
