@@ -1,73 +1,28 @@
 import React from 'react';
-import styled from 'styled-components';
 import { motion } from 'framer-motion';
-
-const SkillContainer = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
-`;
-
-const SkillIcon = styled.div`
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-`;
-
-const SkillInfo = styled.div`
-  flex: 1;
-`;
-
-const SkillName = styled.h4`
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: ${({ theme }) => theme.text};
-`;
-
-const SkillBarContainer = styled.div`
-  width: 100%;
-  height: 8px;
-  background: ${({ theme, isDark }) => 
-    isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'};
-  border-radius: 4px;
-  overflow: hidden;
-`;
-
-const SkillBar = styled.div`
-  height: 100%;
-  width: ${({ level }) => `${level}%`};
-  background: linear-gradient(90deg, ${({ theme }) => theme.accent}, ${({ theme }) => theme.secondary});
-  border-radius: 4px;
-`;
 
 const SimpleSkillItem = ({ name, level, iconSrc, isDark }) => {
   return (
-    <SkillContainer
+    <motion.div
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
+      className="flex items-center gap-4 mb-5"
     >
-      <SkillIcon>
-        <img src={iconSrc} alt={name} />
-      </SkillIcon>
-      <SkillInfo>
-        <SkillName>{name}</SkillName>
-        <SkillBarContainer isDark={isDark}>
-          <SkillBar level={level} />
-        </SkillBarContainer>
-      </SkillInfo>
-    </SkillContainer>
+      <div className="w-10 h-10 flex justify-center items-center rounded-full bg-gradient-to-br from-[#4e342e]/80 to-[#bca18d]/60 shadow">
+        <img src={iconSrc} alt={name} className="w-7 h-7 object-contain" />
+      </div>
+      <div className="flex-1">
+        <h4 className="text-base font-semibold mb-1 text-[#bca18d]">{name}</h4>
+        <div className="w-full h-2 bg-[#181210] rounded overflow-hidden">
+          <div
+            className="h-full rounded bg-gradient-to-r from-[#4e342e] to-[#bca18d] transition-all duration-700"
+            style={{ width: `${level}%` }}
+          />
+        </div>
+      </div>
+    </motion.div>
   );
 };
 

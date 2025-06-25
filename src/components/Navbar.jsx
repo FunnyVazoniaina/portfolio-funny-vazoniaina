@@ -1,238 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import styled from 'styled-components';
 import { FaBars, FaTimes, FaSun, FaMoon, FaGlobe } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-
-const Nav = styled(motion.nav)`
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: ${({ theme, isDark }) => 
-    isDark ? 'rgba(13, 17, 23, 0.85)' : 'rgba(248, 249, 252, 0.85)'};
-  backdrop-filter: blur(12px);
-  z-index: 1000;
-  padding: ${({ isScrolled }) => (isScrolled ? '0.8rem 2rem' : '1.2rem 2rem')};
-  transition: all 0.3s ease;
-  box-shadow: ${({ theme, isDark, isScrolled }) => 
-    isScrolled ? (isDark ? '0 4px 20px rgba(0, 0, 0, 0.3)' : '0 4px 20px rgba(99, 102, 241, 0.1)') : 'none'};
-  
-  @media (max-width: 768px) {
-    padding: ${({ isScrolled }) => (isScrolled ? '0.8rem 1.5rem' : '1.2rem 1.5rem')};
-  }
-`;
-
-const NavContainer = styled.div`
-  max-width: 1400px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
-
-const NavMenu = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-
-  @media (max-width: 992px) {
-    display: none;
-  }
-`;
-
-const NavItem = styled(motion.a)`
-  font-size: 1rem;
-  color: ${({ theme }) => theme.text};
-  text-decoration: none;
-  font-weight: 500;
-  position: relative;
-  padding: 0.5rem 0;
-  transition: color 0.3s ease;
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: ${({ theme }) => theme.accent};
-    bottom: 0;
-    left: 0;
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease;
-  }
-  
-  &:hover, &.active {
-    color: ${({ theme }) => theme.accent};
-    
-    &::after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
-    }
-  }
-`;
-
-const NavControls = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  
-  @media (max-width: 992px) {
-    .desktop-only {
-      display: none;
-    }
-  }
-`;
-
-const ThemeToggle = styled(motion.button)`
-  background: ${({ theme, isDark }) => 
-    isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'};
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${({ theme, isDark }) => 
-    isDark ? theme.accent : theme.text};
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: ${({ theme }) => theme.accent};
-    color: white;
-    transform: rotate(30deg);
-  }
-`;
-
-const LanguageToggle = styled(motion.button)`
-  background: transparent;
-  border: 1px solid ${({ theme }) => theme.accent};
-  border-radius: 20px;
-  padding: 0.4rem 1rem;
-  color: ${({ theme }) => theme.accent};
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: ${({ theme }) => theme.accent};
-    color: white;
-  }
-`;
-
-const Hamburger = styled(motion.button)`
-  display: none;
-  background: transparent;
-  border: none;
-  color: ${({ theme }) => theme.text};
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: ${({ theme }) => theme.accent}20;
-    color: ${({ theme }) => theme.accent};
-  }
-
-  @media (max-width: 992px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
-
-const MobileMenuOverlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(5px);
-  z-index: 998;
-`;
-
-const MobileMenu = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 75%;
-  max-width: 350px;
-  height: 100vh;
-  background: ${({ theme, isDark }) => 
-    isDark ? theme.backgroundAlt : theme.cardBackground};
-  padding: 5rem 2rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  z-index: 999;
-  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
-`;
-
-const MobileNavItem = styled(motion.a)`
-  font-size: 1.25rem;
-  color: ${({ theme }) => theme.text};
-  text-decoration: none;
-  font-weight: 600;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  
-  &:hover, &.active {
-    background: ${({ theme }) => theme.accent}20;
-    color: ${({ theme }) => theme.accent};
-    padding-left: 1.5rem;
-  }
-`;
-
-const CloseButton = styled(motion.button)`
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: transparent;
-  border: none;
-  color: ${({ theme }) => theme.text};
-  font-size: 1.5rem;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: ${({ theme }) => theme.accent}20;
-    color: ${({ theme }) => theme.accent};
-  }
-`;
-
-const MobileNavControls = styled.div`
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding: 1rem;
-  border-top: 1px solid ${({ theme, isDark }) => 
-    isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};
-`;
 
 const Navbar = ({ toggleTheme, toggleLanguage, isDark }) => {
   const { t, i18n } = useTranslation();
@@ -265,15 +34,8 @@ const Navbar = ({ toggleTheme, toggleLanguage, isDark }) => {
   
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto';
+    return () => { document.body.style.overflow = 'auto'; };
   }, [isOpen]);
 
   const navItems = [
@@ -284,138 +46,139 @@ const Navbar = ({ toggleTheme, toggleLanguage, isDark }) => {
     { name: t('skills'), href: '#skills' },
     { name: t('contact'), href: '#contact' },
   ];
-  
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const closeMenu = () => setIsOpen(false);
-
-  // Wrapper functions that don't close the menu
-  const handleThemeToggle = () => {
-    toggleTheme();
-  };
-  
-  const handleLanguageToggle = () => {
-    toggleLanguage();
-  };
 
   return (
     <>
-      <Nav 
-        isDark={isDark} 
-        isScrolled={isScrolled} 
-        initial={{ y: -100 }} 
-        animate={{ y: 0 }} 
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
+        className={`fixed top-0 w-full z-[1000] transition-all duration-300
+          ${isScrolled ? 'shadow-lg' : ''}
+          bg-[#0a0a0a]/95 backdrop-blur-md`}
       >
-        <NavContainer>
-          <LogoContainer>
-            {/* Avatar et nom supprimés */}
-          </LogoContainer>
-          
-          <NavMenu>
-            {navItems.map((item) => (
-              <NavItem 
-                key={item.name} 
-                href={item.href} 
-                className={activeSection === item.href.substring(1) ? 'active' : ''}
-                whileHover={{ y: -3 }}
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-4 py-3 md:py-4">
+          {/* Logo */}
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-bold text-[#bca18d] tracking-tight">FV</span>
+            <span className="hidden md:inline text-lg font-semibold text-[#4e342e]">Funny VAZONIAINA</span>
+          </div>
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navItems.map(item => (
+              <motion.a
+                key={item.href}
+                href={item.href}
+                className={`relative font-medium px-2 py-1 transition
+                  ${activeSection === item.href.substring(1)
+                    ? 'text-[#bca18d]'
+                    : 'text-[#f3e9e1] hover:text-[#bca18d]'}
+                  after:absolute after:left-0 after:bottom-0 after:h-0.5 after:bg-gradient-to-r after:from-[#4e342e] after:to-[#bca18d] after:rounded
+                  after:transition-all after:duration-300
+                  ${activeSection === item.href.substring(1) ? 'after:w-full' : 'after:w-0'} hover:after:w-full`}
+                whileHover={{ y: -2 }}
                 whileTap={{ y: 0 }}
               >
                 {item.name}
-              </NavItem>
+              </motion.a>
             ))}
-          </NavMenu>
-          
-          <NavControls>
-            <LanguageToggle 
+          </div>
+          {/* Controls */}
+          <div className="flex items-center gap-2">
+            <motion.button
               onClick={toggleLanguage}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="desktop-only"
+              className="hidden md:flex items-center gap-1 border border-[#bca18d] text-[#bca18d] px-3 py-1 rounded-2xl font-medium text-sm transition hover:bg-[#4e342e] hover:text-white"
             >
               <FaGlobe /> {i18n.language === 'en' ? 'FR' : 'EN'}
-            </LanguageToggle>
-            
-            <ThemeToggle 
-              isDark={isDark} 
+            </motion.button>
+            <motion.button
               onClick={toggleTheme}
               whileHover={{ scale: 1.1, rotate: 30 }}
               whileTap={{ scale: 0.9, rotate: 0 }}
-              className="desktop-only"
+              className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-[#4e342e]/20 text-[#bca18d] text-lg transition hover:bg-[#4e342e] hover:text-white"
+              aria-label="Toggle theme"
             >
               {isDark ? <FaSun /> : <FaMoon />}
-            </ThemeToggle>
-            
-            <Hamburger 
-              onClick={toggleMenu}
+            </motion.button>
+            {/* Hamburger */}
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
+              className="flex lg:hidden items-center justify-center w-10 h-10 rounded-full bg-[#4e342e]/20 text-[#bca18d] text-xl transition hover:bg-[#4e342e] hover:text-white"
+              aria-label="Menu"
             >
               {isOpen ? <FaTimes /> : <FaBars />}
-            </Hamburger>
-          </NavControls>
-        </NavContainer>
-      </Nav>
-      
+            </motion.button>
+          </div>
+        </div>
+      </motion.nav>
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <>
-            <MobileMenuOverlay
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              onClick={closeMenu}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[998]"
+              onClick={() => setIsOpen(false)}
             />
-            
-            <MobileMenu
-              isDark={isDark}
+            <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed top-0 right-0 w-4/5 max-w-xs h-full bg-[#0a0a0a] shadow-2xl z-[999] flex flex-col p-6"
             >
-              <CloseButton 
-                onClick={closeMenu}
-                whileHover={{ scale: 1.1, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
+              <button
+                onClick={() => setIsOpen(false)}
+                className="absolute top-4 right-4 text-2xl text-[#bca18d] hover:text-white transition"
+                aria-label="Close"
               >
                 <FaTimes />
-              </CloseButton>
-              
-              {navItems.map((item, index) => (
-                <MobileNavItem 
-                  key={item.name} 
-                  href={item.href} 
-                  className={activeSection === item.href.substring(1) ? 'active' : ''}
-                  onClick={closeMenu}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ x: 10 }}
-                >
-                  {item.name}
-                </MobileNavItem>
-              ))}
-              
-              <MobileNavControls isDark={isDark}>
-                <LanguageToggle 
-                  onClick={handleLanguageToggle}
+              </button>
+              <div className="flex flex-col gap-6 mt-12">
+                {navItems.map((item, idx) => (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`font-semibold text-lg px-2 py-2 rounded transition
+                      ${activeSection === item.href.substring(1)
+                        ? 'bg-gradient-to-r from-[#4e342e] to-[#bca18d] text-white'
+                        : 'text-[#bca18d] hover:bg-[#4e342e]/30 hover:text-white'}`}
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.07 }}
+                  >
+                    {item.name}
+                  </motion.a>
+                ))}
+              </div>
+              <div className="flex gap-2 mt-8 border-t border-[#4e342e]/40 pt-6">
+                <motion.button
+                  onClick={toggleLanguage}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-1 border border-[#bca18d] text-[#bca18d] px-3 py-1 rounded-2xl font-medium text-sm transition hover:bg-[#4e342e] hover:text-white"
                 >
                   <FaGlobe /> {i18n.language === 'en' ? 'FR' : 'EN'}
-                </LanguageToggle>
-                
-                <ThemeToggle 
-                  isDark={isDark} 
-                  onClick={handleThemeToggle}
+                </motion.button>
+                <motion.button
+                  onClick={toggleTheme}
                   whileHover={{ scale: 1.1, rotate: 30 }}
                   whileTap={{ scale: 0.9, rotate: 0 }}
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-[#4e342e]/20 text-[#bca18d] text-lg transition hover:bg-[#4e342e] hover:text-white"
+                  aria-label="Toggle theme"
                 >
                   {isDark ? <FaSun /> : <FaMoon />}
-                </ThemeToggle>
-              </MobileNavControls>
-            </MobileMenu>
+                </motion.button>
+              </div>
+            </motion.div>
           </>
         )}
       </AnimatePresence>

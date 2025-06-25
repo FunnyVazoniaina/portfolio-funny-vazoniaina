@@ -1,53 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const Overlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0,0,0,0.7);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ModalContent = styled(motion.div)`
-  background: #161b22;
-  border-radius: 16px;
-  max-width: 90vw;
-  max-height: 80vh;
-  width: 700px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1.5rem 1rem 1rem 1rem;
-`;
-
-const CloseButton = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 2;
-`;
-
-const IframeWrapper = styled.div`
-  width: 100%;
-  height: 400px;
-  @media (max-width: 768px) {
-    height: 220px;
-  }
-`;
 
 const YoutubeModal = ({ open, onClose, youtubeUrl }) => {
   if (!open) return null;
@@ -64,7 +16,6 @@ const YoutubeModal = ({ open, onClose, youtubeUrl }) => {
       }
     }
   } catch {
-    // fallback: try to extract from string
     const match = youtubeUrl.match(/[?&]v=([^&]+)/) || youtubeUrl.match(/youtu\.be\/([^?&]+)/);
     videoId = match ? match[1] : '';
   }
@@ -73,20 +24,28 @@ const YoutubeModal = ({ open, onClose, youtubeUrl }) => {
   return (
     <AnimatePresence>
       {open && (
-        <Overlay
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/80 flex justify-center items-center z-[9999] backdrop-blur-sm"
           onClick={onClose}
         >
-          <ModalContent
+          <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
+            className="relative bg-gradient-to-br from-[#181210] via-[#4e342e]/90 to-[#bca18d]/70 rounded-2xl shadow-2xl max-w-2xl w-[90vw] max-h-[80vh] flex flex-col items-center p-0 overflow-hidden"
             onClick={e => e.stopPropagation()}
           >
-            <CloseButton onClick={onClose}>&times;</CloseButton>
-            <IframeWrapper>
+            <button
+              onClick={onClose}
+              className="absolute top-3 right-4 text-3xl text-[#bca18d] hover:text-white transition z-10"
+              aria-label="Close"
+            >
+              &times;
+            </button>
+            <div className="w-full h-[400px] md:h-[340px] sm:h-[220px] bg-black rounded-b-2xl flex items-center justify-center">
               {embedUrl && (
                 <iframe
                   width="100%"
@@ -96,11 +55,15 @@ const YoutubeModal = ({ open, onClose, youtubeUrl }) => {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
+                  className="rounded-b-2xl w-full h-full"
                 />
               )}
-            </IframeWrapper>
-          </ModalContent>
-        </Overlay>
+            </div>
+            <div className="w-full py-3 text-center bg-gradient-to-r from-[#4e342e]/80 to-[#bca18d]/60 text-[#f3e9e1] font-semibold text-base">
+              YouTube
+            </div>
+          </motion.div>
+        </motion.div>
       )}
     </AnimatePresence>
   );
